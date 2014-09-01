@@ -1,0 +1,58 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+
+<script src="${pageContext.request.contextPath}/static/js/app/areaFuncional.js"></script>
+
+<div class="container-fluid">
+	<div class="row-fluid">
+		<form:form name="form" id="datosAreaFuncional" commandName="datosAreaFuncional"	action="${pageContext.request.contextPath}/auth/areaFuncional/edit" method="post" class="form">
+			<input type="hidden" value=""/>
+			<form:hidden path="id"/>
+			<fieldset>
+				<legend>
+					<h4>Editar Área Funcional</h4>
+				</legend>
+				<!-- Nombre -->
+				<div class="col-md-4">
+					<div class="form-group">
+						<label><spring:message code="areaFuncional.form.datosAreaFuncional.nombre"></spring:message></label>
+						<form:input path="nombre" id="inputNombre" cssClass="form-control" placeholder="Obligatorio"></form:input>
+						<div class="text-danger">
+							<form:errors path="nombre"></form:errors>
+						</div>
+					</div>
+				</div>
+				<!-- Fecha de Alta 
+				<div class="col-md-4">
+					<div class="form-group">
+						<label for="fechaAlta"><spring:message code="areaFuncional.form.datosAreaFuncional.fechaAlta"></spring:message></label>
+						<form:input path="fechaAlta" id="inputFechaAlta" cssClass="form-control" disabled="true"></form:input>
+						<div class="text-danger">
+							<form:errors path="fechaAlta"></form:errors>
+						</div>
+					</div>
+				</div>
+				-->
+				<!-- Fecha Última Modificación -->
+				<div class="col-md-4">
+					<div class="form-group">
+						<label for="fechaUltMod"><spring:message code="areaFuncional.form.datosAreaFuncional.fechaUltMod"></spring:message></label>
+						<form:input path="fechaUltMod" id="inputFechaUltMod" cssClass="form-control" disabled="true"></form:input>
+						<div class="text-danger">
+							<form:errors path="fechaUltMod"></form:errors>
+						</div>
+					</div>
+				</div>
+				<!-- Menú de Botones -->	
+				<div class="row-fluid">
+					<div class="span12">
+						<div class="pull-right">
+							<input id="btnResetFormEdit" type="button" value="<spring:message code="areaFuncional.form.datosAreaFuncional.botonLimpiar" />" class="btn btn-primary" />
+							<input type="submit" type="button" value="<spring:message code="areaFuncional.form.datosAreaFuncional.botonSubmit" />" class="btn btn-primary" />
+						</div>
+					</div>
+				</div>
+			</fieldset>
+		</form:form>
+	</div>
+</div>

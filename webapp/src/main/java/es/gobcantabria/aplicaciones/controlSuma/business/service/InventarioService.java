@@ -1,0 +1,76 @@
+package es.gobcantabria.aplicaciones.controlSuma.business.service;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import es.gobcantabria.aplicaciones.controlSuma.business.domain.Inventario;
+import es.gobcantabria.aplicaciones.controlSuma.business.dto.InventarioDTO;
+import es.gobcantabria.aplicaciones.controlSuma.business.dto.PersonaDTO;
+import es.gobcantabria.aplicaciones.controlSuma.business.dto.filter.InventarioFilterDTO;
+import es.gobcantabria.aplicaciones.controlSuma.business.dto.filter.PersonaFilterDTO;
+/**
+ * Servicio para el control de los Inventarios
+ * 
+ * @author malba
+ *
+ */
+
+public interface InventarioService {
+
+	
+	/**
+	 * Método que devuelve todas las aplicaciones que hay registradas en el inventario
+	 * @return
+	 */
+	public List<InventarioDTO> findAll ();
+	
+	/**
+	 * Método que devuelve todas las aplicaciones que hay registradas y que están activas en el inventario
+	 * @return
+	 */
+	public List<InventarioDTO> findByActivos ();
+	
+	
+	/**
+	 * Método que devuelve un inventario de un identificador pasado por parámetro
+	 * @return
+	 */
+	public InventarioDTO getById(Long id);
+	
+	/**
+	 * Método para crear un nuevo inventario
+	 * @param dto
+	 * @throws ControlSumaException
+	 */
+	public void createInventario(InventarioDTO dto);
+	
+	
+	/**
+	 * Método para modificar un nuevo inventario
+	 * @param dto
+	 * @throws ControlSumaException
+	 */
+	public void updateInventario(InventarioDTO dto);
+	
+	/**
+	 * Metodo que busca a trabes de los campos del listado de Inventarios
+	 * @param filtro
+	 * @return
+	 * @throws ControlSumaException
+	 */
+	public List<InventarioDTO> buscar(InventarioFilterDTO filtro);
+	
+	/**
+	 * Método que devuelve el número total del inventario;
+	 * @return
+	 */
+	public Long contarInventario();
+
+	
+	
+
+	
+}
+

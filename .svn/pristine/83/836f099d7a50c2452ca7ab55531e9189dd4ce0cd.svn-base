@@ -1,0 +1,73 @@
+package es.gobcantabria.aplicaciones.controlSuma.business.service;
+
+import java.util.List;
+
+import es.gobcantabria.aplicaciones.controlSuma.business.dto.InventarioDTO;
+import es.gobcantabria.aplicaciones.controlSuma.business.dto.PersonaDTO;
+import es.gobcantabria.aplicaciones.controlSuma.business.dto.filter.PersonaFilterDTO;
+import es.gobcantabria.aplicaciones.controlSuma.exception.ControlSumaException;
+
+
+/**
+ * @author tdevegaa
+ *
+ *Interface para el servicio de control de Personas.
+ *Se definen las funciones o métodos necesarios para dar servicio al controlador
+ */
+public interface PersonaService {
+
+	/**
+	 * Método que devuelve todas las personas registras en la tabla Personas
+	 * @return
+	 */
+	public List<PersonaDTO> findAll ();
+	
+	
+	/**
+	 * Método que devuelve la persona asociada al codPersona pasado como parámetro
+	 * @return
+	 */
+	public PersonaDTO getById(Long id);
+	
+	/**
+	 * Método para crear una nueva Persona
+	 * @param dto
+	 * @throws ControlSumaException
+	 */
+	public void createPersona(PersonaDTO dto) throws ControlSumaException;
+	
+	
+	/**
+	 * Método para modificar una persona
+	 * @param dto
+	 * @throws ControlSumaException
+	 */
+	public void updatePersona(PersonaDTO dto) throws ControlSumaException;
+	
+	/**
+	 * Método para Filtrar la búsqueda de personas, recibe como parámetro un objeto PersonaFilterDTO
+	 * y devuelve una lista de objetos de tipo persona dto.
+	 * @param PersonaFilter
+	 * @return List<PersonaDTO>
+	 * @throws ControlSumaException
+	 * */
+	
+	public List<PersonaDTO> buscar(PersonaFilterDTO filtro) throws ControlSumaException;
+	
+	/**
+	 * 
+	 * @param nombreRol
+	 * @return
+	 */
+	public List<PersonaDTO> findPersonaRol(Long id);
+	
+	public PersonaDTO comprobarOrSavePersona(PersonaDTO persona);
+	
+	/**
+	 * Método para eliminar una persona.
+	 * @param id
+	 * @throws ControlSumaException
+	 */
+	public void deletePersona(Long id) throws ControlSumaException;
+
+}

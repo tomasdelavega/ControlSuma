@@ -1,0 +1,13 @@
+package es.gobcantabria.aplicaciones.controlSuma.business.service;
+
+import java.util.List;
+
+import es.gobcantabria.aplicaciones.controlSuma.business.dto.EntornoDTO;
+
+public interface EntornoService {
+	
+	public  List<EntornoDTO> entornoIdAplicacion(Long id);
+	
+	public boolean actualizarEntorno(EntornoDTO entorno);
+	
+}

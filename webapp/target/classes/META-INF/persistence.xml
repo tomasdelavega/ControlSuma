@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="1.0" xmlns="http://java.sun.com/xml/ns/persistence" 
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence 
+                                 http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd">
+    <persistence-unit name="controlSuma">        	
+       <provider>org.hibernate.ejb.HibernatePersistence</provider>
+       <class>es.gobcantabria.aplicaciones.controlSuma.business.domain.Inventario</class>
+       <class>es.gobcantabria.aplicaciones.controlSuma.business.domain.Persona</class>
+       <class>es.gobcantabria.aplicaciones.controlSuma.business.domain.Entorno</class>
+       <class>es.gobcantabria.aplicaciones.controlSuma.business.domain.InventarioOtras</class>
+       <class>es.gobcantabria.aplicaciones.controlSuma.business.domain.Tecnologia</class>
+       <class>es.gobcantabria.aplicaciones.controlSuma.business.domain.InventarioPersona</class>
+       <class>es.gobcantabria.aplicaciones.controlSuma.business.domain.AreaFuncional</class>
+       <class>es.gobcantabria.aplicaciones.controlSuma.business.domain.Rol</class>
+    	<properties>
+    		<property name="hibernate.hbm2ddl.auto" value="validate"/>   
+    		<property name="hibernate.dialect" value="org.hibernate.dialect.Oracle10gDialect" />
+    	</properties>
+    </persistence-unit>
+</persistence>

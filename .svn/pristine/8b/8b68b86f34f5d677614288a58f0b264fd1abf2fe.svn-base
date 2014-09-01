@@ -1,0 +1,65 @@
+package es.gobcantabria.aplicaciones.controlSuma.web.Filter;
+
+import java.io.Serializable;
+
+import javax.validation.constraints.Size;
+
+
+/**
+ * Clase Filter para las páginas de búsqueda de Inventario
+ * @author malba
+ *
+ */
+
+public class InventarioFilter implements Serializable{
+
+		@Size(min=0 , max=100, message="Formato de Filtro incorrecto")
+	    private String areaFuncional;
+		
+		@Size(min=0 , max=50, message="Formato de Filtro incorrecto")
+	    private String codInventario;
+		
+		@Size(min=0 , max=50, message="Formato de Filtro incorrecto")
+	    private String codJira;
+
+		@Size(min=0 , max=100, message="Formato de Filtro incorrecto")
+	    private String nombreInventario;
+	    
+	    public InventarioFilter(){
+	    	
+	    }
+
+		public String getAreaFuncional() {
+			return areaFuncional;
+		}
+
+		public void setAreaFuncional(String areaFuncional) {
+			this.areaFuncional = areaFuncional;
+		}
+
+		public String getCodInventario() {
+			return codInventario;
+		}
+
+		public void setCodInventario(String codInventario) {
+			this.codInventario = codInventario;
+		}
+
+		public String getCodJira() {
+			return codJira;
+		}
+
+		public void setCodJira(String codJira) {
+			this.codJira = codJira;
+		}
+
+		public String getNombreInventario() {
+			return nombreInventario;
+		}
+
+		public void setNombreInventario(String nombreInventario) {
+			this.nombreInventario = nombreInventario;
+		}
+	    
+
+}

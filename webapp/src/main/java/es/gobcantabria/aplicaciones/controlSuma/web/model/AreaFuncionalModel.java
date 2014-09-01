@@ -1,0 +1,68 @@
+package es.gobcantabria.aplicaciones.controlSuma.web.model;
+
+import java.io.Serializable;
+import java.util.Date;
+
+import javax.validation.constraints.Size;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+import es.gobcantabria.aplicaciones.controlSuma.business.dto.AreaFuncionalDTO;
+
+public class AreaFuncionalModel implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	private Long id;
+	@Size(min=1,max=100,message="Debe tener entre 1 y 100 caracteres")
+	private String nombre;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private Date fechaUltMod;
+	
+	public AreaFuncionalModel(){}
+	
+	public AreaFuncionalModel(AreaFuncionalDTO dto){
+		this.setId(dto.getId());
+		this.setNombre(dto.getNombre());
+		this.setFechaUltMod(dto.getFechaUltMod());
+	}
+	
+	public AreaFuncionalDTO convert(){
+		AreaFuncionalDTO dto = new AreaFuncionalDTO();
+		dto.setId(this.getId());
+		dto.setNombre(this.getNombre());
+		dto.setFechaAlta(this.getFechaUltMod());
+		return dto;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public Date getFechaUltMod() {
+		return fechaUltMod;
+	}
+
+	public void setFechaUltMod(Date fechaUltMod) {
+		this.fechaUltMod = fechaUltMod;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+}

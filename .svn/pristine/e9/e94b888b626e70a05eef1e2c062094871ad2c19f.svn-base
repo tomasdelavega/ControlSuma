@@ -1,0 +1,29 @@
+package es.gobcantabria.aplicaciones.controlSuma.util;
+
+public class Constantes {
+
+		/**
+		 * TEMPLATES
+		 */
+	public static final String INVENTARIOS_LIST_TEMPLATE = "ListInventarioTemplate";
+	public static final String INVENTARIOS_FORM_TEMPLATE = "InventarioTemplate";
+
+	/*Templates para personas*/
+	public static final String PERSONAS_LIST_TEMPLATE = "ListPersonaTemplate";
+	public static final String PERSONAS_FORM_TEMPLATE = "PersonaTemplate";
+	/*Templates para Roles*/
+	public static final String ROLES_LIST_TEMPLATE = "ListRolTemplate";
+	public static final String ROLES_FORM_TEMPLATE = "RolTemplate";
+	/*Templates para Tecnologías*/
+	public static final String TECNOLOGIAS_LIST_TEMPLATE = "ListTecnologiasTemplate";
+	public static final String TECNOLOGIAS_FORM_TEMPLATE = "TecnologiaTemplate";
+	/*Templates para Áreas Funcionales*/
+	public static final String AREA_FUNCIONAL_LIST_TEMPLATE = "ListAreasFuncionalesTemplate";
+	public static final String AREA_FUNCIONAL_FORM_TEMPLATE = "AreaFuncionalTemplate";
+
+	public static final String AREASFUNCIONALES_LIST_TEMPLATE = "ListAreasFuncionalesTemplate";
+
+	public static final String MENSAJE_ERROR = "mensajeError";
+
+	
+}

@@ -1,0 +1,299 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+
+<div class="container-fluid">
+	<div class="row-fluid">
+		<form:form name="form" id="datosInformacionAdicional"
+			commandName="datosInformacionAdicional"
+			action="${pageContext.request.contextPath}/auth/inventario/updateInformacionAdicional"
+			method="post" class="form">
+			<input type="hidden" value="" />
+	 		<form:hidden path="id" />
+			<fieldset>
+				<div class="row">
+					<div class="col-md-2">
+						<div class="form-group">
+							<label><spring:message
+									code="inventario.form.datosInformacionAdicional.fechaUltMod" /></label>
+							<form:input path="fechaUltMod" id="inputFechaUltMod"
+								cssClass="form-control" disabled="true"
+								placeholder="Sin guardar" />
+							<div class="text-danger">
+								<form:errors path="fechaUltMod"></form:errors>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-2">
+						<div class="form-group">
+							<label><spring:message
+									code="inventario.form.datosInformacionAdicional.tipoTransicion" /></label>
+							<form:select path="tipoTransicion" id="tipoTransicionSelect"
+								cssClass="form-control">
+								<form:option value="" label="Seleccionar"></form:option>
+								<form:options items="${listTipoTrancision}" />
+							</form:select>
+							<div class="text-danger">
+								<form:errors path="tipoTransicion"></form:errors>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-4">
+						<div class="form-group">
+							<label><spring:message
+									code="inventario.form.datosInformacionAdicional.mantCorrectivoPrevisto" /></label>
+							<form:select path="correctivo" id="correctivoSelect"
+								cssClass="form-control">
+								<form:option value="" label="Seleccionar"></form:option>
+								<form:options items="${listLogicos}" />
+							</form:select>
+							<div class="text-danger">
+								<form:errors path="correctivo"></form:errors>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-8">
+						<div class="form-group">
+							<label><spring:message
+									code="inventario.form.datosInformacionAdicional.correctivo" /></label>
+							<form:textarea path="correctivo" id="inputCorrectivo"
+								cssClass="form-control" />
+							<div class="text-danger">
+								<form:errors path="correctivo"></form:errors>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-4">
+						<div class="form-group">
+							<label><spring:message
+									code="inventario.form.datosInformacionAdicional.mantEvolutivoPrevisto" /></label>
+							<form:select path="mantEvolutivoPrevisto"
+								id="mantEvolutivoPrevistoSelect" cssClass="form-control">
+								<form:option value="" label="Seleccionar"></form:option>
+								<form:options items="${listLogicos}" />
+							</form:select>
+							<div class="text-danger">
+								<form:errors path="mantEvolutivoPrevisto"></form:errors>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-8">
+						<div class="form-group">
+							<label><spring:message
+									code="inventario.form.datosInformacionAdicional.evolutivo" /></label>
+							<form:textarea path="evolutivo" id="inputEvolutivo"
+								cssClass="form-control" />
+							<div class="text-danger">
+								<form:errors path="evolutivo"></form:errors>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-4">
+						<div class="form-group">
+							<label><spring:message
+									code="inventario.form.datosInformacionAdicional.nivelIncidencias" /></label>
+							<form:select path="nivelIncidencias" id="nivelIncidenciasSelect"
+								cssClass="form-control">
+								<form:option value="" label="Seleccionar"></form:option>
+								<form:options items="${listNivelIncidencias}" />
+							</form:select>
+							<div class="text-danger">
+								<form:errors path="nivelIncidencias"></form:errors>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-8">
+						<div class="form-group">
+							<label><spring:message
+									code="inventario.form.datosInformacionAdicional.periodoUsoAplicacion" /></label>
+							<form:input path="periodoUsoAplicacion"
+								id="inputPeriodoUsoAplicacion" cssClass="form-control" />
+							<div class="text-danger">
+								<form:errors path="periodoUsoAplicacion"></form:errors>
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<div class="row">
+					<fieldset>
+						<div class="row">
+
+							<div class="col-md-3">
+								<div class="form-group">
+									<label><spring:message
+											code="inventario.form.datosInformacionAdicional.docAnalisisFuncional" /></label>
+									<form:select path="docAnalisisFuncional"
+										id="docAnalisisFuncionalSelect" cssClass="form-control">
+										<form:option value="" label="Seleccionar"></form:option>
+										<form:options items="${listLogicos}" />
+									</form:select>
+									<div class="text-danger">
+										<form:errors path="docAnalisisFuncional"></form:errors>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label><spring:message
+											code="inventario.form.datosInformacionAdicional.docDisenoTecnico" /></label>
+									<form:select path="docDisenoTecnico"
+										id="docDisenoTecnicoSelect" cssClass="form-control">
+										<form:option value="" label="Seleccionar"></form:option>
+										<form:options items="${listLogicos}" />
+									</form:select>
+									<div class="text-danger">
+										<form:errors path="docDisenoTecnico"></form:errors>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label><spring:message
+											code="inventario.form.datosInformacionAdicional.docPlanPruebas" /></label>
+									<form:select path="docPlanPruebas" id="docPlanPruebasSelect"
+										cssClass="form-control">
+										<form:option value="" label="Seleccionar"></form:option>
+										<form:options items="${listLogicos}" />
+									</form:select>
+									<div class="text-danger">
+										<form:errors path="docPlanPruebas"></form:errors>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-3">
+								<div class="form-group">
+									<label><spring:message
+											code="inventario.form.datosInformacionAdicional.docManualInstalacion" /></label>
+									<form:select path="docManualInstalacion"
+										id="docManualInstalacionSelect" cssClass="form-control">
+										<form:option value="" label="Seleccionar"></form:option>
+										<form:options items="${listLogicos}" />
+									</form:select>
+									<div class="text-danger">
+										<form:errors path="docManualInstalacion"></form:errors>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+
+					<div class="col-md-12">
+						<div class="form-group">
+							<label><spring:message
+									code="inventario.form.datosInformacionAdicional.rutaDoc" /></label>
+							<form:input path="rutaDoc"
+								id="inputRutaDoc" cssClass="form-control" />
+							<div class="text-danger">
+								<form:errors path="rutaDoc"></form:errors>
+							</div>
+						</div>
+					</div>
+
+
+				</div>
+					</fieldset>
+				</div>
+
+
+				<div class="row">
+
+					<div class="col-md-12">
+						<div class="form-group">
+							<label><spring:message
+									code="inventario.form.datosInformacionAdicional.nivelCalidadCodigo" /></label>
+							<form:input path="nivelCalidadCodigo"
+								id="inputNivelCalidadCodigo" cssClass="form-control" />
+							<div class="text-danger">
+								<form:errors path="nivelCalidadCodigo"></form:errors>
+							</div>
+						</div>
+					</div>
+
+
+				</div>
+
+				<div class="row">
+					<div class="col-md-4">
+						<div class="form-group">
+							<label><spring:message
+									code="inventario.form.datosInformacionAdicional.trabajosVuelo" /></label>
+							<form:select path="trabajosVuelo" id="trabajosVueloSelect"
+								cssClass="form-control">
+								<form:option value="" label="Seleccionar"></form:option>
+								<form:options items="${listLogicos}" />
+							</form:select>
+							<div class="text-danger">
+								<form:errors path="trabajosVuelo"></form:errors>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-8">
+						<div class="form-group">
+							<label><spring:message
+									code="inventario.form.datosInformacionAdicional.descripciontrabajosVuelo" /></label>
+							<form:textarea path="descripciontrabajosVuelo"
+								id="inputDescripciontrabajosVuelo" cssClass="form-control" />
+							<div class="text-danger">
+								<form:errors path="descripciontrabajosVuelo"></form:errors>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+				<div class="row">
+
+					<div class="col-md-12">
+						<div class="form-group">
+							<label><spring:message
+									code="inventario.form.datosInformacionAdicional.inventarioObjetos" /></label>
+							<form:textarea path="inventarioObjetos"
+								id="inputInventarioObjetos" cssClass="form-control" />
+							<div class="text-danger">
+								<form:errors path="inventarioObjetos"></form:errors>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<label><spring:message
+									code="inventario.form.datosInformacionAdicional.observaciones" /></label>
+							<form:textarea path="observaciones"
+								id="inputObservaciones" cssClass="form-control" />
+							<div class="text-danger">
+								<form:errors path="observaciones"></form:errors>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row-fluid">
+					<div class="span12">
+						<div class="pull-right">
+							 <input type="submit"
+								value=<spring:message
+										code="inventario.form.datosInformacionAdicional.botonSubmit" />
+								class="btn btn-primary" />
+						</div>
+					</div>
+
+				</div>
+			</fieldset>
+		</form:form>
+
+
+
+	</div>
+</div>

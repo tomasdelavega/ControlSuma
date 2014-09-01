@@ -1,0 +1,14 @@
+package es.gobcantabria.aplicaciones.controlSuma.business.dao;
+
+import java.io.Serializable;
+import es.gobcantabria.aplicaciones.controlSuma.business.domain.Persona;
+
+
+
+/**
+ * @author tdevegaa
+ *
+ */
+public interface PersonaDAO extends IDaoGenericInterface<Persona,Serializable>{
+
+}

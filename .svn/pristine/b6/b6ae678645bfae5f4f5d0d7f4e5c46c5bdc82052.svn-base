@@ -1,0 +1,140 @@
+package es.gobcantabria.aplicaciones.controlSuma.business.helper;
+
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import es.gobcantabria.aplicaciones.controlSuma.business.domain.Inventario;
+import es.gobcantabria.aplicaciones.controlSuma.business.domain.Persona;
+import es.gobcantabria.aplicaciones.controlSuma.business.dto.EntornoDTO;
+import es.gobcantabria.aplicaciones.controlSuma.business.dto.InventarioDTO;
+import es.gobcantabria.aplicaciones.controlSuma.business.dto.InventarioOtrasDTO;
+import es.gobcantabria.aplicaciones.controlSuma.business.dto.PersonaDTO;
+import es.gobcantabria.aplicaciones.controlSuma.business.dto.TecnologiaDTO;
+import es.gobcantabria.aplicaciones.controlSuma.web.model.InventarioModel;
+
+@Component
+public class InventarioHelper extends GenericHelper {
+
+	@Autowired
+	private PersonaHelper personaHelper;
+
+	@Autowired
+	private TecnologiaHelper tecnologiaHelper;
+	
+	@Autowired
+	private AreaFuncionalHelper areaFuncionalHelper;
+	
+	@Autowired
+	private InventarioOtrasHelper inventararioOtrasHelper;
+	
+	public List<InventarioDTO> convertEntityToDTO(List<Inventario> listaEnt) {
+
+		List<InventarioDTO> listaInventarioDto = new ArrayList<InventarioDTO>();
+
+		for (Inventario entity : listaEnt) {
+			listaInventarioDto.add(this.convertEntityToDTO(entity));
+		}
+		return listaInventarioDto;
+
+	}
+
+	public List<Inventario> convertDTOToEntity(List<InventarioDTO> listaDTO) {
+		List<Inventario> listaInventario = new ArrayList<Inventario>();
+
+		for (InventarioDTO dto : listaDTO) {
+
+			listaInventario.add(convertDTOToEntity(dto));
+
+		}
+
+		return listaInventario;
+	}
+
+	public InventarioDTO convertEntityToDTO(Inventario entity) {
+		InventarioDTO dto = new InventarioDTO();
+
+		dto.setId(entity.getId());
+		dto.setActivo(entity.getActivo());
+		dto.setFechaAlta(entity.getFechaAlta());
+		dto.setFechaUltMod(entity.getFechaUltMod());
+		dto.setActivo(entity.getActivo());
+		dto.setCodInventario(entity.getCodInventario());
+		dto.setCodJira(entity.getCodJira());
+		dto.setSubAreaFuncional(entity.getSubAreaFuncional());
+		dto.setDescripcion(entity.getDescripcion());
+		dto.setNombreInventario(entity.getNombreInventario());
+		dto.setObservaciones(entity.getObservaciones());
+		dto.setVersion(entity.getVersion());
+		
+		if (entity.getInventarioOtra()!=null){
+			dto.setInventarioOtra(inventararioOtrasHelper.convertEntityToDTO(entity.getInventarioOtra()));
+		}
+		if (entity.getResponsableGob()!=null){
+			dto.setResponsableGob(personaHelper.convertEntityToDTO(entity
+				.getResponsableGob()));
+		}
+		if (entity.getResponsableSUMA()!=null){
+			dto.setResponsableSUMA(personaHelper.convertEntityToDTO(entity
+				.getResponsableSUMA()));
+		}
+		if (entity.getUsuarioFinal()!=null){
+			dto.setUsuarioFinal(personaHelper.convertEntityToDTO(entity
+				.getUsuarioFinal()));
+		}
+		if(entity.getTecnologia()!=null){
+			dto.setTecnologia(tecnologiaHelper.convertEntityToDTO(entity
+				.getTecnologia()));
+		}
+		return dto;
+	}
+
+	public Inventario convertDTOToEntity(InventarioDTO dto) {
+		Inventario inv = new Inventario();
+		inv.setId(dto.getId());
+		inv.setActivo(dto.getActivo());
+		inv.setFechaAlta(dto.getFechaAlta());
+		inv.setSubAreaFuncional(dto.getSubAreaFuncional());
+		inv.setFechaUltMod(dto.getFechaUltMod());
+		if(dto.getAreaFuncional().getId()!=null){
+		inv.setAreaFuncional(areaFuncionalHelper.convertDTOtoEntity(dto.getAreaFuncional()));
+		}
+		inv.setActivo(dto.getActivo());
+		inv.setCodInventario(dto.getCodInventario());
+		inv.setCodJira(dto.getCodJira());
+
+		inv.setDescripcion(dto.getDescripcion());
+		inv.setNombreInventario(dto.getNombreInventario());
+		inv.setObservaciones(dto.getObservaciones());
+		inv.setVersion(dto.getVersion());
+		if(dto.getResponsableGob()!=null){
+		inv.setResponsableGob(personaHelper.convertDTOToEntity(dto
+				.getResponsableGob()));
+		}
+		if(dto.getResponsableSUMA()!=null){
+		inv.setResponsableSUMA(personaHelper.convertDTOToEntity(dto
+				.getResponsableSUMA()));
+		}
+		if(dto.getUsuarioFinal()!=null){
+		inv.setUsuarioFinal(personaHelper.convertDTOToEntity(dto
+				.getUsuarioFinal()));
+		}
+		if(dto.getTecnologia().getId()!=null){
+		inv.setTecnologia(tecnologiaHelper.convertDTOToEntity(dto.getTecnologia()));
+		}
+
+		return inv;
+
+		// Pendiente
+		// inv.setEntornos();
+		// inv.setDesarrolladores();
+		// inv.setInventarioOtra();
+
+	}
+	
+	
+	
+}

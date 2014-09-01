@@ -1,0 +1,332 @@
+body {  
+  background-color: #ededed;
+}
+
+.botonera{margin-top: 12px;}
+.imageCabecera {
+	z-index: 0;
+	height: 92px;
+	background-image: url('../images/cabecera.jpg');
+	background-color: #174894;
+	margin-bottom: 0px;
+}
+
+.navbar {
+	background-color: #174894;
+	border-color: #174894;
+}
+
+.applicationbar {
+	background-color: #174894;
+	color: white;
+	font-weight: bold;
+	padding-bottom: 5px;
+	margin-top: 0px;
+}
+
+.loginbox {
+	width:500px; 
+	margin-left:auto; 
+	margin-right:auto;
+	background-image:url('../images/logosogi.png');
+	background-repeat:no-repeat;
+	background-position:95% 20%; 
+	margin-bottom: 0px;
+	border-top-right-radius: 6px;
+	border-top-left-radius: 6px;
+	background-color: #E5E5E5;
+	padding:20px;
+}
+
+
+.loginpie {
+	width:500px; 
+	margin-left:auto; 
+	margin-right:auto;
+	background-color: #ADD8E6;
+	padding: 5px;
+	text-align:center;
+	border-bottom-right-radius: 6px;
+	border-bottom-left-radius: 6px;
+}
+
+.loginpie a {
+ color: #0088cc;
+}
+
+#textoEntrada {
+	text-align:justify;
+	text-justify:inter-word;
+	padding: 10px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	background-color: white;
+	overflow: auto;
+	height: 90px;
+	width: 70%;
+	margin-left:auto;
+	margin-right:auto;
+	font-size: 10px;
+}
+
+.info-entrada {
+	width: 80%;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+.text-error {
+	color: red;
+}
+
+.content {
+	margin-top: 30px;
+}
+
+
+.enlacesCabecera {
+  list-style: none;
+  text-align: right;
+}
+
+.enlacesCabecera li {
+  white-space: nowrap;  
+}
+
+
+.menubar {
+	background-color: #FAFAFA;
+	padding-left: 0px;
+	border-bottom: 1px solid #BFBFBF;
+}
+
+
+#login .input-group{
+	padding: 5px;
+}
+
+
+.form {
+	-x-system-font: none;
+	font-family: arial, Verdana, Helvetica, sans-serif;
+	font-size: 14px ;
+	font-size-adjust: none;
+	font-stretch: normal;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: normal;
+	line-height: 1em;
+}
+
+.form fieldset {
+	-moz-background-clip: border;
+	-moz-background-inline-policy: continuous;
+	-moz-background-origin: padding;
+	background:  #cbdbf4 none repeat scroll 0 0 ;
+	border-color: #3B69AB;
+	border-width: 1px;
+	border-style: dotted;
+	padding:10px;
+	margin:10px 10px 10px 10px;
+}
+
+
+.form fieldset legend { 
+	font-size: 0.9em;
+	background-color: #3B69AB;
+	background-repeat: no-repeat ;
+	background-position: left center; 
+	border: none;
+	margin-left:15px;
+	margin-right:15px;
+	margin-bottom:0px;
+	font-size: 0.9em;
+	font-weight: bold;
+	color:#ffffff;
+	text-align: left center;
+	width:200px;
+	
+}
+.SeccionFiltro{
+	background: #3B69AB;
+	color:#ffffff;
+	text-align: left;
+	height:20px;
+	margin: 0px 20px 0px 0px;
+	padding:5px;
+	border-bottom:1px solid silver;
+}
+
+.LineaFiltro {
+	border-color: #3B69AB;
+	border-left-style: dotted;
+	border-left-width:1px;
+	border-right-style: dotted;
+	border-right-width:1px;
+	border-top-style: none;
+	border-bottom-style: none;
+	margin: 0px 20px 0px 0px;
+	padding-left:5px;
+	padding-right:5px;
+	padding-top:5px;
+	padding-botton:0px;
+	background:#cbdbf4;
+}
+
+.LineaFiltroSubmit {
+	background: #cbdbf4;
+	color:#ffffff;
+	text-align: right center;
+	height:40px;
+	margin: 0px 20px 0px 0px;
+	padding:5px;
+	border-style: none dotted dotted dotted ;
+	border-width:1px;
+	border-color: #3B69AB;
+}
+
+.filterHalfLine{
+	width:49%;
+}
+
+.filterTwoThirdsLine{
+	width:60%;
+}
+
+.filterOneThirdsLine{
+	width:38%;
+}
+
+
+
+.filterQuarterLine{
+/* 	width:24%;
+ */}
+
+
+.filterSelectSmall{
+	font:0.7em Verdana, helvetica, arial, sans-serif;
+	height:25px;
+	width:98%;
+}
+
+.filterSelectSmall1024{
+	font:0.7em Verdana, helvetica, arial, sans-serif;
+	height:25px;
+	width:85%;
+}
+
+.filterSelectXSmall{
+	font:0.7em Verdana, helvetica, arial, sans-serif;
+	height:25px;
+	width:80%;
+}
+
+.filterSelectXXSmall{
+	font:0.7em Verdana, helvetica, arial, sans-serif;
+	height:25px;
+	width:50%;
+}
+
+.textMiddle{
+	vertical-align:middle;
+	margin-top:5px;
+}
+
+
+#formularios {
+	-x-system-font: none;
+	font-family: arial, Verdana, Helvetica, sans-serif;
+	font-size: 14px ;
+	font-size-adjust: none;
+	font-stretch: normal;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: normal;
+	line-height: 1em;
+}
+
+#formularios fieldset {
+	-moz-background-clip: border;
+	-moz-background-inline-policy: continuous;
+	-moz-background-origin: padding;
+	background:  #cbdbf4 none repeat scroll 0 0 ;
+	border-color: #3B69AB;
+	border-width: 1px;
+	border-style: dotted;
+	padding:10px;
+	margin:10px 10px 10px 10px;
+}
+
+
+#formularios  fieldset legend { 
+	font-size: 25px;
+	background-color: #3B69AB;
+	background-repeat: no-repeat ;
+	background-position: left center; 
+	border: none;
+	margin-left:5%;
+	margin-right:5%;
+	margin-bottom:0px;
+	font-weight: bold;
+	color:#ffffff;
+	text-align: left center;
+	width:90%;
+	height: 50px;
+	
+}
+
+
+
+
+.legendfiltro
+{
+	    background-color: #A9BCF5;
+    background-position: left center;
+    background-repeat: no-repeat;
+    border: medium none;
+    color: #ffffff;
+    font-size: 24px;
+    font-weight: bold;
+    height: 50px;
+    margin-bottom: 27px;
+    margin-left: 1%;
+    margin-right: 2%;
+    width: 486px;
+}
+.legendfiltro div{width: 100%;}
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #174894;
+    border-color: #ddd #ddd transparent;
+    border-image: none;
+    border-style: solid;
+    border-width: 1px;
+    color: #fafafa;
+    cursor: default;
+}
+
+/*Añadido por Tomás para añadir margen superior*/
+.marginTop1{margin-top: 1%;}
+.marginTop2{margin-top: 2%;}
+.marginTop3{margin-top: 3%;}
+.marginTop4{margin-top: 4%;}
+.marginTop5{margin-top: 5%;}
+.marginTop6{margin-top: 6%;}
+.marginTop7{margin-top: 7%;}
+.marginTop8{margin-top: 8%;}
+.marginTop9{margin-top: 9%;}
+.marginTop10{margin-top: 10%;}
+
+
+#formularios  fieldset fieldset legend { 
+	font-size: 16px;
+	padding-left: 10px; 
+	padding-top: 10px; 
+	height: 30px;
+	
+}

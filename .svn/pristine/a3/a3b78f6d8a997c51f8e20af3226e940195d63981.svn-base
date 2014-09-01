@@ -1,0 +1,68 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+
+<script src="${pageContext.request.contextPath}/static/js/app/rol.js"></script>
+
+<div class="container-fluid">
+	<div class="row-fluid">
+		<form:form name="form" id="datosRol" commandName="datosRol"	action="${pageContext.request.contextPath}/auth/rol/edit" method="post" class="form">
+			<input type="hidden" value=""/>
+			<form:hidden path="id"/>
+			<fieldset>
+				<legend>
+					<h4>Editar Rol</h4>
+				</legend>
+				<!-- Nombre del Rol -->
+				<div class="col-md-4">
+					<div class="form-group">
+						<label><spring:message code="rol.form.datosRol.nombre"></spring:message></label>
+						<form:input path="nombre" id="inputNombre" cssClass="form-control" disabled="false"></form:input>
+						<div class="text-danger">
+							<form:errors path="nombre"></form:errors>
+						</div>
+					</div>
+				</div>
+				<!-- Fecha de Alta 
+				<div class="col-md-4">
+					<div class="form-group">
+						<label for="fechaAlta"><spring:message code="rol.form.datosRol.fechaAlta"></spring:message></label>
+						<form:input path="fechaAlta" id="inputFechaAlta" cssClass="form-control" disabled="true"></form:input>
+						<div class="text-danger">
+							<form:errors path="fechaAlta"></form:errors>
+						</div>
+					</div>
+				</div>
+				-->
+				<!-- Fecha de Última Modificación -->
+				<div class="col-md-4">
+					<div class="form-group">
+						<label for="fechaUltMod"><spring:message code="rol.form.datosRol.fechaUltMod"></spring:message></label>
+						<form:input path="fechaUltMod" id="inputFechaUltMod" cssClass="form-control" disabled="true"></form:input>
+						<div class="text-danger">
+							<form:errors path="fechaUltMod"></form:errors>
+						</div>
+					</div>
+				</div>
+				<!-- Falta añadir textarea descripción -->
+				<div class="col-md-4">
+					<div class="form-group">
+						<label><spring:message code="rol.form.datosRol.descripcion"></spring:message></label>
+						<form:textarea path="descripcion" id="textareaDescripcion" cssClass="form-control" disabled="false"></form:textarea>
+						<div class="text-danger">
+							<form:errors path="descripcion"></form:errors>
+						</div>
+					</div>
+				</div>
+				<!-- Menú de Botones -->	
+				<div class="row-fluid">
+					<div class="span12">
+						<div class="pull-right">
+							<input id="btnResetFormEdit" type="button" value="<spring:message code="rol.form.datosRol.botonLimpiar" />" class="btn btn-primary" />
+							<input type="submit" type="button" value="<spring:message code="rol.form.datosRol.botonSubmit" />" class="btn btn-primary" />
+						</div>
+					</div>
+				</div>
+			</fieldset>
+		</form:form>
+	</div>
+</div>

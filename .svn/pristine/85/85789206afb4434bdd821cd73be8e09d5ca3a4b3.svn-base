@@ -1,0 +1,287 @@
+package es.gobcantabria.aplicaciones.controlSuma.business.domain;
+
+import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+
+
+
+
+/**
+ * The persistent class for the TB_INVENTARIO database table.
+ * 
+ */
+@Entity
+@Table(name = "TB_INVENTARIO")
+@NamedQueries({
+	@NamedQuery(name = "Inventario.findAll", query = "SELECT i FROM Inventario i"),
+	@NamedQuery(name = "Inventario.findAllActivos", query = "SELECT  i FROM Inventario i WHERE  i.activo=1 order by i.codInventario"), })
+public class Inventario implements Serializable {
+
+	private static final long serialVersionUID = -8547961220771169626L;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TB_INVENTARIO_XINVENTARIO_GENERATOR")
+    @SequenceGenerator(name = "TB_INVENTARIO_XINVENTARIO_GENERATOR", sequenceName = "SEQ_INVENTARIO", allocationSize=1)
+    @Column(name = "X_INVENTARIO", unique = true, nullable = false, precision = 8, scale = 0)
+    private Long id;
+
+    @Column(name = "F_ALTA", columnDefinition = "Date", insertable = true, updatable = false)
+    private Date fechaAlta;
+
+    @Column(name = "F_ULT_MOD", columnDefinition = "Date")
+    private Date fechaUltMod;
+
+    @Column(name = "L_ACTIVO", unique = false, nullable = true, length = 1)
+    private Integer activo;
+   
+    @Column(name = "T_SUB_AREA_FUNCIONAL", unique = false, nullable = true, length = 200)
+    private String subAreaFuncional;
+   
+    @Column(name = "T_COD_INVENTARIO", unique = true, nullable = false, length = 50)
+    private String codInventario;
+
+    @Column(name = "T_COD_JIRA", unique = true, nullable = false, length = 50)
+    private String codJira;
+    
+    @Column(name = "T_DESCRIPCION", unique = false, nullable = true, length = 500)
+    private String descripcion;
+
+    @Column(name = "T_INVENTARIO", unique = false, nullable = false, length = 100)
+    private String nombreInventario;
+
+    @Column(name = "T_OBSERVACIONES", unique = false, nullable = true, length = 500)
+    private String observaciones;
+
+    @Column(name = "T_VERSION", unique = false, nullable = true, length = 10)
+    private String version;
+
+    
+    // bi-directional many-to-one association to AreaFuncional
+    @ManyToOne
+
+    @JoinColumn(name = "AFU_X_AREA_FUNCIONAL")
+    private AreaFuncional areaFuncional;
+    
+    // bi-directional many-to-one association to Entorno
+    @OneToMany(mappedBy = "inventario", fetch = FetchType.LAZY)
+    private List<Entorno> entornos;
+
+    // bi-directional many-to-one association to Persona
+    @ManyToOne
+    @JoinColumn(name = "PER_X_RESPONSABLE_SUMA")
+    private Persona responsableSUMA;
+
+    @ManyToOne
+    @JoinColumn(name = "PER_X_USUARIO_FINAL")
+    private Persona usuarioFinal;
+
+    // bi-directional many-to-one association to Persona
+    @ManyToOne
+    @JoinColumn(name = "PER_X_RESPONSABLE_GOB")
+    private Persona responsableGob;
+
+    // bi-directional many-to-one association to Tecnologia
+    @ManyToOne
+    @JoinColumn(name = "TEC_X_TECNOLOGIA")
+    private Tecnologia tecnologia;
+
+    // bi-directional one-to-one association to InventarioOtra
+    @OneToOne(mappedBy = "inventario",fetch = FetchType.EAGER)
+    private InventarioOtras inventarioOtra;
+
+    // bi-directional many-to-one association to InventarioPersona
+    @OneToMany(mappedBy = "inventario", fetch = FetchType.EAGER)
+    private List<InventarioPersona> desarrolladores;
+
+    public Inventario() {
+    }
+
+    @PrePersist
+    protected void onCreate() {
+      this.fechaAlta = new Date();
+      this.fechaUltMod = new Date();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+      this.fechaUltMod = new Date();
+    }
+    
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Date getFechaAlta() {
+		return fechaAlta;
+	}
+
+	public void setFechaAlta(Date fechaAlta) {
+		this.fechaAlta = fechaAlta;
+	}
+
+	public Date getFechaUltMod() {
+		return fechaUltMod;
+	}
+
+	public void setFechaUltMod(Date fechaUltMod) {
+		this.fechaUltMod = fechaUltMod;
+	}
+
+	public Integer getActivo() {
+		return activo;
+	}
+
+	public void setActivo(Integer activo) {
+		this.activo = activo;
+	}
+
+	public String getSubAreaFuncional() {
+		return subAreaFuncional;
+	}
+
+	public void setSubAreaFuncional(String subAreaFuncional) {
+		this.subAreaFuncional = subAreaFuncional;
+	}
+
+	public String getCodInventario() {
+		return codInventario;
+	}
+
+	public void setCodInventario(String codInventario) {
+		this.codInventario = codInventario;
+	}
+
+	public String getCodJira() {
+		return codJira;
+	}
+
+	public void setCodJira(String codJira) {
+		this.codJira = codJira;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	public String getNombreInventario() {
+		return nombreInventario;
+	}
+
+	public void setNombreInventario(String nombreInventario) {
+		this.nombreInventario = nombreInventario;
+	}
+
+	public String getObservaciones() {
+		return observaciones;
+	}
+
+	public void setObservaciones(String observaciones) {
+		this.observaciones = observaciones;
+	}
+
+	public String getVersion() {
+		return version;
+	}
+
+	public void setVersion(String version) {
+		this.version = version;
+	}
+
+	public AreaFuncional getAreaFuncional() {
+		return areaFuncional;
+	}
+
+	public void setAreaFuncional(AreaFuncional areaFuncional) {
+		this.areaFuncional = areaFuncional;
+	}
+
+	public List<Entorno> getEntornos() {
+		return entornos;
+	}
+
+	public void setEntornos(List<Entorno> entornos) {
+		this.entornos = entornos;
+	}
+
+	public Persona getResponsableSUMA() {
+		return responsableSUMA;
+	}
+
+	public void setResponsableSUMA(Persona responsableSUMA) {
+		this.responsableSUMA = responsableSUMA;
+	}
+
+	public Persona getUsuarioFinal() {
+		return usuarioFinal;
+	}
+
+	public void setUsuarioFinal(Persona usuarioFinal) {
+		this.usuarioFinal = usuarioFinal;
+	}
+
+	public Persona getResponsableGob() {
+		return responsableGob;
+	}
+
+	public void setResponsableGob(Persona responsableGob) {
+		this.responsableGob = responsableGob;
+	}
+
+	public Tecnologia getTecnologia() {
+		return tecnologia;
+	}
+
+	public void setTecnologia(Tecnologia tecnologia) {
+		this.tecnologia = tecnologia;
+	}
+
+	public InventarioOtras getInventarioOtra() {
+		return inventarioOtra;
+	}
+
+	public void setInventarioOtra(InventarioOtras inventarioOtra) {
+		this.inventarioOtra = inventarioOtra;
+	}
+
+	public List<InventarioPersona> getDesarrolladores() {
+		return desarrolladores;
+	}
+
+	public void setDesarrolladores(List<InventarioPersona> desarrolladores) {
+		this.desarrolladores = desarrolladores;
+	}
+
+	public InventarioPersona addInventarioPersona(InventarioPersona inventarioPersona) {
+		getDesarrolladores().add(inventarioPersona);
+		inventarioPersona.setInventario(this);
+		return inventarioPersona;
+	}
+
+}

@@ -1,0 +1,92 @@
+# ======================================
+# CONFIGURACION DE PROPIEDADES GENERICAS
+# ======================================
+
+#Configuracion de I18n
+locale.resolver=org.displaytag.localization.I18nStrutsAdapter
+locale.provider=org.displaytag.localization.I18nStrutsAdapter
+
+#Mostrar la cabecera. Nombres de columnas y banners adicionales
+#  Por defecto true
+basic.show.header=true
+
+#Mostrar la tabla aunque la lista fuente esté vacía
+#  Por defecto false
+basic.empty.showtable=false
+
+#Mensaje a mostrar cuando la lista de la que se alimenta la tabla es empty o null.
+#  Si basic.empty.showtable=true se mostrará en la primera y única fila de la tabla
+#  Si basic.empty.showtable=false se mostrará únicamente el mensaje
+basic.msg.empty_list=No se han encontrado datos
+
+#Indica si la lista debe ser ordenada antes de paginar, o la ordenación solo afecta a los registros mostrados en la página actual
+#  Valores soportados=page, list
+#  Por defecto page
+sort.amount=list
+
+#Donde encajar la cabecera para paginar registros
+#  Valores soportados=top, bottom, both
+#  Por defecto top
+paging.banner.placement=bottom
+#Cabecera a mostrar cuando no se han encontrado elementos en la lista
+#paging.banner.no_items_found=<span class="pagebanner">No hay resultados</span>
+#Cabecera a mostrar cuando se ha encontrado exactamente 1 registro en la lista
+paging.banner.one_item_found=<span class="pagebanner">1 registro encontrado </span>
+#Cabecera a mostrar cuando se están mostrando actualmente todos los elementos de la lista
+paging.banner.all_items_found=<span class="pagebanner">{0} resultados </span>
+#Cabecera a mostrar cuando se muestra parcialmente la lista
+paging.banner.some_items_found=<span class="pagebanner">{0} resultados, mostrando {2} - {3}</span>
+#Número de páginas a mostrar en la cabecera para acceso directo a ellas (a modo de barra de paginacion)
+#  Valores posibles, cualquier número dentro de lo razonable
+#  Por defecto 8
+paging.banner.group_size=8
+#Barra de paginación cuando hay más páginas a mostrar y la acutal no es la primera ni la última
+paging.banner.full=<div class="pagination pagination-right"><ul class="pagination pull-right"><li><a href="{1}">&laquo;</a></li><li><a href="{2}">&lsaquo;</a></li>{0}<li><a href="{3}">&rsaquo;</a></li><li><a href="{4}">&raquo;</a></li></ul></div>
+#Barra de paginación cuando se muestra la primera página
+paging.banner.first=<div class="pagination pagination-right"><ul class="pagination pull-right"><li class="disabled"><span>&laquo;</span><li class="disabled"><span>&lsaquo;</span></li></li>{0}<li><a href="{3}">&rsaquo;</a></li><li><a href="{4}">&raquo;</a></li></ul></div>
+#Barra de paginación cuando hay más páginas a mostrar y la acutal no es la primera ni la última
+paging.banner.last=<div class="pagination pagination-right"><ul class="pagination pull-right"><li><a href="{1}">&laquo;</a></li><li><a href="{2}">&lsaquo;</a></li>{0}<li class="disabled"><span>&rsaquo;</span></li><li class="disabled"><span>&raquo;</span></li></ul></div>
+#Barra de paginación cuando solo se tiene una página
+#paging.banner.onepage=<span class="pagelinks">{0}</span>
+paging.banner.onepage=
+#Separador entre los enlaces a las páginas en la barra de paginación
+#  Por defecto ,
+paging.banner.page.link=<li><a href="{1}">{0}</a></li>
+paging.banner.page.selected=<li class="active"><span>{0}</span></li>
+paging.banner.page.separator=
+# ===========================================================================
+# CONFIGURACION DE PROPIEDADES PARA LA EXPORTACION DE DATOS (EXCEL, XML, CSV)
+# ===========================================================================
+#String a mostrar en el pie de página cuando se habilitan las funciones de esportación de datos
+#export.banner=<div class="exportlinks">Exportar: {0}</div>
+export.banner=<div class="exportlinks"></div>
+
+export.types=excel
+
+#Presentar la opción de exportar los datos en formato Excel
+#  Por defecto true
+export.excel=false
+#export.excel.poi=true
+
+#Presentar la opción de exportar los datos en formato CSV (Comma Separated Values)
+#  Por defecto true
+export.csv=false
+#Presentar la opción de exportar los datos en formato PDF
+#  Por defecto true
+export.pdf=false
+#Presentar la opción de exportar los datos en formato XML
+#  Por defecto true
+export.xml=false
+
+#Salida de la opción de exportación Excel
+export.excel.label=<span class="export excel">Excel </span>
+#Indicar si se desea que en la exportación de datos Excel vayan los títulos de columnas
+#  Por defecto=false
+export.excel.include_header=true
+
+export.excel.amount=list
+
+export.excel.class=org.displaytag.export.ExcelView
+
+#export.excel.decorator=org.displaytag.sample.decorators.HssfTotalWrapper
+#export.ExcelView=org.displaytag.export.ExcelView

@@ -1,0 +1,51 @@
+package es.gobcantabria.aplicaciones.controlSuma.util;
+
+public class Constantes {
+
+		/**
+		 * TEMPLATES
+		 */
+	public static final String INVENTARIOS_LIST_TEMPLATE = "ListInventarioTemplate";
+	public static final String INVENTARIOS_FORM_TEMPLATE = "InventarioTemplate";
+	public static final String INVENTARIOS_FORM_FORWARD="forward:/auth/inventario/edit";
+
+	/*Templates para personas*/
+	public static final String PERSONAS_LIST_TEMPLATE = "ListPersonaTemplate";
+	public static final String PERSONAS_FORM_TEMPLATE = "PersonaTemplate";
+	/*Templates para Roles*/
+	public static final String ROLES_LIST_TEMPLATE = "ListRolTemplate";
+	public static final String ROLES_FORM_TEMPLATE = "RolTemplate";
+	/*Templates para Tecnologías*/
+	public static final String TECNOLOGIAS_LIST_TEMPLATE = "ListTecnologiasTemplate";
+	public static final String TECNOLOGIAS_FORM_TEMPLATE = "TecnologiaTemplate";
+	/*Templates para Áreas Funcionales*/
+	public static final String AREA_FUNCIONAL_LIST_TEMPLATE = "ListAreasFuncionalesTemplate";
+	public static final String AREA_FUNCIONAL_FORM_TEMPLATE = "AreaFuncionalTemplate";
+
+	
+
+
+	
+	/* Templates Administracion*/
+	public static final String ADMINISTRACION_CARGA_PROYECTOS_JIRA="cargarAutomaticaPage";
+	public static final String ADMINISTRACION_CARGA_ROLES_JIRA = "cargarAutomaticaRolesPage";
+	public static final String ADMINISTRACION_CARGA_PERSONA="cargaAutomaticaPersonaPage";	
+	
+	
+	
+	public static final String MENSAJE_ERROR = "mensajeError";
+	public static final String MENSAJE_INFO="mensajeInfo";
+	public static final String MENSAJE_WARNING="mensajeWarning";
+	
+
+	
+	
+	public static final String PESTANA_INFORMACION_ADICIONAL="InformacionAdicional";
+	public static final String PESTANA_ENTORNO_DESARROLLO="DatosEntornoDES";
+	public static final String PESTANA_ENTORNO_PREPRODUCCION="DatosEntornoPRE";
+	public static final String PESTANA_ENTORNO_PRODUCCION="DatosEntornoPRO";
+
+	
+	
+	
+}

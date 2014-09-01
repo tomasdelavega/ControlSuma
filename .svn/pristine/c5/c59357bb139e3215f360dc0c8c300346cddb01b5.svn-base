@@ -1,0 +1,57 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+
+<script src="${pageContext.request.contextPath}/static/js/app/tecnologia.js"></script>
+
+<div class="container-fluid">
+	<div class="row-fluid">
+		<form:form name="form" id="datosTecnologia" commandName="datosTecnologia"	action="${pageContext.request.contextPath}/auth/tecnologia/edit" method="post" class="form">
+			<input type="hidden" value=""/>
+			<form:hidden path="id"/>
+			<fieldset>
+				<legend>
+					<h4>Editar Tecnología</h4>
+				</legend>
+				<!-- Código Tecnología -->
+				<div class="col-md-3">
+					<div class="form-group">
+						<label><spring:message code="tecnologia.form.datosTecnologia.codTecnologia"></spring:message></label>
+						<form:input type="text" maxlength="50" path="codTecnologia" id="inputCodTecnologia" class="form-control" placeholder="Código Tecnología"></form:input>
+						<div class="text-danger">
+							<form:errors path="codTecnologia"></form:errors>
+						</div>
+					</div>
+				</div>
+				<!-- Fecha Última Modificación --> 
+				<div class="col-md-3">
+					<div class="form-group">
+						<label for="fechaUltMod"><spring:message code="tecnologia.form.datosTecnologia.fechaUltMod" /></label>
+						<form:input path="fechaUltMod" id="inputFechaUltMod" class="form-control" disabled="true" />
+						<div class="text-danger">
+							<form:errors path="fechaUltMod"></form:errors>
+						</div>
+					</div>
+				</div>
+				<!-- Descripción -->
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="codJira"><spring:message code="tecnologia.form.datosTecnologia.descripcion" /></label>
+						<form:textarea maxlength="500" placeholder="Descripción de la Tecnología" rows="5" cols="50" path="descripcion" id="textareatDescripcion" class="form-control" disabled="false" />
+						<div class="text-danger">
+							<form:errors path="descripcion"></form:errors>
+						</div>
+					</div>
+				</div>
+				<!-- Menú de Botones -->	
+				<div class="row-fluid">
+					<div class="span12">
+						<div class="pull-right">
+							<input id="btnResetFormEdit" type="button" value="<spring:message code="tecnologia.form.datosTecnologia.botonLimpiar" />" class="btn btn-primary" />
+							<input type="submit" type="button" value="<spring:message code="tecnologia.form.datosTecnologia.botonSubmit" />" class="btn btn-primary" />
+						</div>
+					</div>
+				</div>
+			</fieldset>
+		</form:form>
+	</div>
+</div>

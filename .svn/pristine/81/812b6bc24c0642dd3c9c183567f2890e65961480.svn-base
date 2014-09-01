@@ -1,0 +1,83 @@
+package es.gobcantabria.aplicaciones.controlSuma.business.dto;
+
+import java.io.Serializable;
+import java.util.Date;
+
+public class TecnologiaDTO implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+    private Long id;
+    private Date fechaAlta;
+    private Date fechaUltMod;
+    private String codTecnologia;
+    private String descripcion;
+    private String framework;
+
+    public TecnologiaDTO() {
+
+    }
+
+    public TecnologiaDTO(Long id) {
+		this.id=id;
+	}
+
+	public Long getId() {
+	return id;
+    }
+
+    public Date getFechaAlta() {
+	return fechaAlta;
+    }
+
+    public String getCodTecnologia() {
+	return codTecnologia;
+    }
+
+    public String getDescripcion() {
+	return descripcion;
+    }
+
+    public void setId(Long id) {
+	this.id = id;
+    }
+
+    public void setFechaAlta(Date fechaAlta) {
+	this.fechaAlta = fechaAlta;
+    }
+
+    public void setCodTecnologia(String codTecnologia) {
+	this.codTecnologia = codTecnologia;
+    }
+
+    public void setDescripcion(String descripcion) {
+	this.descripcion = descripcion;
+    }
+    
+    @Override
+    public String toString() {
+	return this.codTecnologia;
+    }
+
+	public Date getFechaUltMod() {
+		return fechaUltMod;
+	}
+
+	public void setFechaUltMod(Date fechaUltMod) {
+		this.fechaUltMod = fechaUltMod;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public String getFramework() {
+		return framework;
+	}
+
+	public void setFramework(String framework) {
+		this.framework = framework;
+	}
+    
+    
+
+}

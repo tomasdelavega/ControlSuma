@@ -1,0 +1,89 @@
+package es.gobcantabria.aplicaciones.controlSuma.business.service.impl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import es.gobcantabria.aplicaciones.controlSuma.business.dao.TecnologiaDAO;
+import es.gobcantabria.aplicaciones.controlSuma.business.domain.Tecnologia;
+import es.gobcantabria.aplicaciones.controlSuma.business.dto.TecnologiaDTO;
+import es.gobcantabria.aplicaciones.controlSuma.business.helper.TecnologiaHelper;
+import es.gobcantabria.aplicaciones.controlSuma.business.service.TecnologiaService;
+import es.gobcantabria.aplicaciones.controlSuma.exception.ControlSumaException;
+
+@Service
+@Transactional
+public class TecnologiaServiceImpl implements TecnologiaService {
+
+	@Autowired
+	private MessageSource message;
+	@Autowired
+	private TecnologiaDAO tecnologiaDAO;
+	@Autowired
+	private TecnologiaHelper helper;
+
+	public List<TecnologiaDTO> findAll() {
+
+		List<Tecnologia> lista = tecnologiaDAO
+				.executeQuery("Tecnologia.findAll");
+
+		return helper.convertEntityToDTO(lista);
+	}
+
+	public TecnologiaDTO getById(Long id) {
+		// TODO Auto-generated method stub
+		TecnologiaDTO t = helper.convertEntityToDTO(tecnologiaDAO.find(id));
+		return t;
+	}
+
+	public void createTecnologia(TecnologiaDTO dto) throws ControlSumaException {
+		// TODO Auto-generated method stub
+		Tecnologia tec = null;
+		tec = tecnologiaDAO.create(helper.convertDTOToEntity(dto));
+		if (tec == null) {
+			throw new ControlSumaException(message.getMessage(
+					"error.tecnologia.form.create", null, null));
+		}
+	}
+
+	public void updateTecnologia(TecnologiaDTO dto) throws ControlSumaException {
+		// TODO Auto-generated method stub
+		Tecnologia tec = null;
+		tec = tecnologiaDAO.update(helper.convertDTOToEntity(dto));
+		if (tec == null) {
+			throw new ControlSumaException(message.getMessage(
+					"error.tecnologia.form.update", null, null));
+		}
+	}
+	/*	
+	@Override
+	public void deleteTecnologia(Long id){
+		boolean delete = tecnologiaDAO.delete(id);
+		if (delete == false) {
+			throw new ControlSumaException(message.getMessage(
+					"error.tecnologia.delete", null, null));
+		}
+		try{
+			tecnologiaDAO.delete(id);
+		} catch(Exception e){
+			
+		}
+		
+	}
+	*/
+
+	@Override
+	@Transactional
+	public void deleteTecnologia(Long id) {
+		// TODO Auto-generated method stub
+		try{
+			tecnologiaDAO.delete(id);
+		}catch(Exception e){
+			e.getMessage();
+		}
+	}
+
+}

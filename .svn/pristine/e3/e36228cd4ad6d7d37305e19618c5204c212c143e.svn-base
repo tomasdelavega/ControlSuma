@@ -1,0 +1,23 @@
+package es.gobcantabria.aplicaciones.controlSuma.business.dao;
+
+import java.io.Serializable;
+
+import es.gobcantabria.aplicaciones.controlSuma.business.domain.Inventario;
+
+
+/**
+ * @author malba
+ *
+ */
+public interface InventarioDAO  extends IDaoGenericInterface<Inventario, Serializable>{
+
+
+
+//	/**
+//	 * Método que devuelve todos los inventarios que están activos en el sistema
+//	 * @return
+//	 */
+//	public List<Inventario> findByActivo ();
+
+	
+}

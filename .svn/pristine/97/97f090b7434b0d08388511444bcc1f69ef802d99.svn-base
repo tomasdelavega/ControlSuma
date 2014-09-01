@@ -1,0 +1,29 @@
+package es.gobcantabria.aplicaciones.controlSuma.util;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Configuration;
+
+import es.gobcantabria.aplicaciones.jirawsuma.dto.JiraConfiguracion;
+@Configuration
+public class Utilidades {
+
+	private static JiraConfiguracion configuracionJira; 
+	
+
+	public static JiraConfiguracion getinstanceJiraconfiguration(){
+		if (configuracionJira==null){
+			configuracionJira= new JiraConfiguracion();
+			try {
+				configuracionJira.cargarDefault();
+			
+			} catch (MalformedURLException e) {
+
+			}
+		}
+		return configuracionJira;
+	}
+	
+}

@@ -1,0 +1,26 @@
+/**
+ * Fichero Javascript para la Administración
+ */
+
+
+function administracionCargaDatos(){
+	$.ajax({
+		url: $('#adminitracion.jira.proyectos.action').attr("href"),
+		type: "GET",
+		
+		processData: false,
+		async:false,
+		success: function( data ) {
+
+			$("#adminitracion.jira.proyectos.respuesta").html(data);
+			
+		}
+	});
+}
+$(document).ready(function() {
+	$('#adminitracion.jira.proyectos.action').bind('click', function() {
+		administracionCargaDatos(this);
+	});
+	
+	
+});

@@ -1,0 +1,55 @@
+#------------------------------------------------------------------------------
+#
+#  The following properties set the logging levels and log appender.  The
+#  log4j.rootCategory variable defines the default log level and one or more
+#  appenders.  For the console, use 'S'.  For the daily rolling file, use 'R'.
+#  For an HTML formatted log, use 'H'.
+#
+#  To override the default (rootCategory) log level, define a property of the
+#  form (see below for available values): 
+#
+#        log4j.logger. =
+#
+#    Available logger names:
+#      TODO
+#
+#    Possible Log Levels:
+#      FATAL, ERROR, WARN, INFO, DEBUG
+#
+#------------------------------------------------------------------------------
+log4j.rootCategory=DEBUG, ficheroRotado, consola
+
+#logger para las clases de este paquete
+
+log4j.logger.es.gobcantabria.aplicaciones.invsuma=DEBUG
+log4j.logger.org.hibernate=DEBUG
+log4j.logger.org.springframework=DEBUG
+log4j.logger.org.apache=DEBUG
+log4j.logger.org.jboss=INFO
+
+#------------------------------------------------------------------------------
+#
+#  The following properties configure the console (stdout) appender.
+#  See http://logging.apache.org/log4j/docs/api/index.html for details.
+#
+#------------------------------------------------------------------------------
+log4j.appender.consola = org.apache.log4j.ConsoleAppender
+log4j.appender.consola.layout = org.apache.log4j.PatternLayout
+log4j.appender.consola.layout.ConversionPattern = %d{yyyy-MM-dd HH:mm:ss} [%p] %c  %m%n
+
+#------------------------------------------------------------------------------
+#
+#  The following properties configure the Daily Rolling File appender.
+#  See http://logging.apache.org/log4j/docs/api/index.html for details.
+#
+#------------------------------------------------------------------------------
+log4j.appender.ficheroRotado = org.apache.log4j.DailyRollingFileAppender
+#Se guardaran en el raiz de Eclipse
+#log4j.appender.ficheroRotado.File = Logs/Sogi/sogi.log
+log4j.appender.ficheroRotado.File = C:/logs/controlSuma/controlSuma.log
+log4j.appender.ficheroRotado.Append = true
+log4j.appender.ficheroRotado.ImmediateFlush=true
+log4j.appender.ficheroRotado.DatePattern = '.'yyy-MM-dd
+log4j.appender.ficheroRotado.layout = org.apache.log4j.PatternLayout 
+log4j.appender.ficheroRotado.layout.ConversionPattern = [%p] %d{yyyy-MM-dd HH:mm:ss} %c %m%n
+

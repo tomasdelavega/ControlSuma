@@ -1,0 +1,209 @@
+package es.gobcantabria.aplicaciones.controlSuma.business.dto;
+
+import java.io.Serializable;
+import java.util.Date;
+
+
+
+public class InventarioOtrasDTO implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	private Long id;
+	private Date fechaAlta;
+	private Date fechaUltMod;
+	private Boolean docAnalisisFuncional;
+	private Boolean docDisenoTecnico;
+	private Boolean docManualInstalacion;
+	private Boolean docPlanPruebas;
+	private Boolean mantCorrectivoPrevisto;
+	private Boolean mantEvolutivoPrevisto;
+	private Boolean trabajosVuelo;
+	private String correctivo;
+	private String docOtra;
+	private String evolutivo;
+	private String inventarioObjetos;
+	private String nivelCalidadCodigo;
+	private String nivelIncidencias;
+	private String observaciones;
+	private String periodoUsoAplicacion;
+	private String rutaDoc;
+	private String tipoTransicion;
+	private String descripciontrabajosVuelo;
+
+	public InventarioOtrasDTO(){
+		
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Date getFechaAlta() {
+		return fechaAlta;
+	}
+
+	public void setFechaAlta(Date fechaAlta) {
+		this.fechaAlta = fechaAlta;
+	}
+
+	public Date getFechaUltMod() {
+		return fechaUltMod;
+	}
+
+	public void setFechaUltMod(Date fechaUltMod) {
+		this.fechaUltMod = fechaUltMod;
+	}
+
+	public Boolean getDocAnalisisFuncional() {
+		return docAnalisisFuncional;
+	}
+
+	public void setDocAnalisisFuncional(Boolean docAnalisisFuncional) {
+		this.docAnalisisFuncional = docAnalisisFuncional;
+	}
+
+	public Boolean getDocDisenoTecnico() {
+		return docDisenoTecnico;
+	}
+
+	public void setDocDisenoTecnico(Boolean docDisenoTecnico) {
+		this.docDisenoTecnico = docDisenoTecnico;
+	}
+
+	public Boolean getDocManualInstalacion() {
+		return docManualInstalacion;
+	}
+
+	public void setDocManualInstalacion(Boolean docManualInstalacion) {
+		this.docManualInstalacion = docManualInstalacion;
+	}
+
+	public Boolean getDocPlanPruebas() {
+		return docPlanPruebas;
+	}
+
+	public void setDocPlanPruebas(Boolean docPlanPruebas) {
+		this.docPlanPruebas = docPlanPruebas;
+	}
+
+	public Boolean getMantCorrectivoPrevisto() {
+		return mantCorrectivoPrevisto;
+	}
+
+	public void setMantCorrectivoPrevisto(Boolean mantCorrectivoPrevisto) {
+		this.mantCorrectivoPrevisto = mantCorrectivoPrevisto;
+	}
+
+	public Boolean getMantEvolutivoPrevisto() {
+		return mantEvolutivoPrevisto;
+	}
+
+	public void setMantEvolutivoPrevisto(Boolean mantEvolutivoPrevisto) {
+		this.mantEvolutivoPrevisto = mantEvolutivoPrevisto;
+	}
+
+	public Boolean getTrabajosVuelo() {
+		return trabajosVuelo;
+	}
+
+	public void setTrabajosVuelo(Boolean trabajosVuelo) {
+		this.trabajosVuelo = trabajosVuelo;
+	}
+
+	public String getCorrectivo() {
+		return correctivo;
+	}
+
+	public void setCorrectivo(String correctivo) {
+		this.correctivo = correctivo;
+	}
+
+	public String getDocOtra() {
+		return docOtra;
+	}
+
+	public void setDocOtra(String docOtra) {
+		this.docOtra = docOtra;
+	}
+
+	public String getEvolutivo() {
+		return evolutivo;
+	}
+
+	public void setEvolutivo(String evolutivo) {
+		this.evolutivo = evolutivo;
+	}
+
+	public String getInventarioObjetos() {
+		return inventarioObjetos;
+	}
+
+	public void setInventarioObjetos(String inventarioObjetos) {
+		this.inventarioObjetos = inventarioObjetos;
+	}
+
+	public String getNivelCalidadCodigo() {
+		return nivelCalidadCodigo;
+	}
+
+	public void setNivelCalidadCodigo(String nivelCalidadCodigo) {
+		this.nivelCalidadCodigo = nivelCalidadCodigo;
+	}
+
+	public String getNivelIncidencias() {
+		return nivelIncidencias;
+	}
+
+	public void setNivelIncidencias(String nivelIncidencias) {
+		this.nivelIncidencias = nivelIncidencias;
+	}
+
+	public String getObservaciones() {
+		return observaciones;
+	}
+
+	public void setObservaciones(String observaciones) {
+		this.observaciones = observaciones;
+	}
+
+	public String getPeriodoUsoAplicacion() {
+		return periodoUsoAplicacion;
+	}
+
+	public void setPeriodoUsoAplicacion(String periodoUsoAplicacion) {
+		this.periodoUsoAplicacion = periodoUsoAplicacion;
+	}
+
+	public String getRutaDoc() {
+		return rutaDoc;
+	}
+
+	public void setRutaDoc(String rutaDoc) {
+		this.rutaDoc = rutaDoc;
+	}
+
+	public String getTipoTransicion() {
+		return tipoTransicion;
+	}
+
+	public void setTipoTransicion(String tipoTransicion) {
+		this.tipoTransicion = tipoTransicion;
+	}
+
+	public String getDescripciontrabajosVuelo() {
+		return descripciontrabajosVuelo;
+	}
+
+	public void setDescripciontrabajosVuelo(String descripciontrabajosVuelo) {
+		this.descripciontrabajosVuelo = descripciontrabajosVuelo;
+	}
+	
+	
+	
+	
+}

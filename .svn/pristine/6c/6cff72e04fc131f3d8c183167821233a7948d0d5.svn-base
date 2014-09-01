@@ -1,0 +1,94 @@
+package es.gobcantabria.aplicaciones.controlSuma.business.service.impl;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.context.NoSuchMessageException;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import es.gobcantabria.aplicaciones.controlSuma.business.dao.InventarioDAO;
+import es.gobcantabria.aplicaciones.controlSuma.business.domain.Inventario;
+import es.gobcantabria.aplicaciones.controlSuma.business.dto.EntornoDTO;
+import es.gobcantabria.aplicaciones.controlSuma.business.dto.InventarioDTO;
+import es.gobcantabria.aplicaciones.controlSuma.business.dto.PersonaDTO;
+import es.gobcantabria.aplicaciones.controlSuma.business.dto.filter.InventarioFilterDTO;
+import es.gobcantabria.aplicaciones.controlSuma.business.helper.InventarioHelper;
+import es.gobcantabria.aplicaciones.controlSuma.business.service.InventarioService;
+import es.gobcantabria.aplicaciones.controlSuma.exception.ControlSumaException;
+
+/**
+ * Servicio para el control de los Inventarios
+ * 
+ * @author malba
+ *
+ */
+@Service
+@Transactional
+public class InventarioServiceImpl  implements InventarioService {
+
+	
+	@Autowired
+	private MessageSource message;
+	
+	@Autowired
+	private InventarioDAO inventarioDAO;
+	
+	@Autowired
+	private InventarioHelper helper;
+	
+	public List<InventarioDTO> findAll() {
+
+		List<Inventario> listaInventario= inventarioDAO.executeQuery("Inventario.findAll");
+		return helper.convertEntityToDTO(listaInventario);
+	}
+
+	public List<InventarioDTO> findByActivos() {
+		
+		List<Inventario> listaInventario= inventarioDAO.executeQuery("Inventario.findAllActivos");
+		return helper.convertEntityToDTO(listaInventario);
+	}
+
+	public InventarioDTO getById(Long id) {
+		
+		Inventario inv=inventarioDAO.find(id);
+		return helper.convertEntityToDTO(inv);
+		
+	}
+	
+
+	public void createInventario(InventarioDTO dto) throws ControlSumaException{
+		
+		Inventario inventario=null;
+		inventario=inventarioDAO.create(helper.convertDTOToEntity(dto));
+		if (inventario!=null){
+			throw new ControlSumaException(message.getMessage("error.inventario.form.create", null, null));
+		}
+		
+	}
+
+	public void updateInventario(InventarioDTO dto) throws ControlSumaException {
+	Inventario inventario =	helper.convertDTOToEntity(dto);
+		  inventario=inventarioDAO.update(inventario);
+		if (inventario!=null){
+			throw new ControlSumaException(message.getMessage("error.inventario.form.update", null, null));
+		}		
+	}
+	
+	public InventarioDTO searchInventario(InventarioDTO inventarioDto)
+	{
+		
+		return null;
+	}
+
+	@Override
+	public List<InventarioDTO> buscar(InventarioFilterDTO filtro) {
+		List<InventarioDTO> inventario = new ArrayList<InventarioDTO>();
+		inventario = helper.convertEntityToDTO(inventarioDAO.buscar(filtro));
+		return inventario;
+
+	}
+
+}

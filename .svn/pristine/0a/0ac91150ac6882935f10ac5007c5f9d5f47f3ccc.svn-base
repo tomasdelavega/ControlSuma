@@ -1,0 +1,430 @@
+package es.gobcantabria.aplicaciones.controlSuma.web.controller;
+
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
+
+import org.apache.catalina.connector.Request;
+import org.apache.commons.beanutils.BeanUtils;
+//import org.jmesa.facade.TableFacade;
+//import org.jmesa.facade.TableFacadeFactory;
+//import org.jmesa.limit.Limit;
+//import org.jmesa.model.TableModel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import es.gobcantabria.aplicaciones.controlSuma.business.dto.AreaFuncionalDTO;
+import es.gobcantabria.aplicaciones.controlSuma.business.dto.EntornoDTO;
+import es.gobcantabria.aplicaciones.controlSuma.business.dto.InventarioDTO;
+import es.gobcantabria.aplicaciones.controlSuma.business.dto.InventarioOtrasDTO;
+import es.gobcantabria.aplicaciones.controlSuma.business.dto.InventarioPersonaDTO;
+import es.gobcantabria.aplicaciones.controlSuma.business.dto.PersonaDTO;
+import es.gobcantabria.aplicaciones.controlSuma.business.dto.RolDTO;
+import es.gobcantabria.aplicaciones.controlSuma.business.dto.TecnologiaDTO;
+import es.gobcantabria.aplicaciones.controlSuma.business.helper.EntornoHelper;
+import es.gobcantabria.aplicaciones.controlSuma.business.helper.InventarioHelper;
+import es.gobcantabria.aplicaciones.controlSuma.business.helper.InventarioOtrasHelper;
+import es.gobcantabria.aplicaciones.controlSuma.business.service.AreaFuncionalService;
+import es.gobcantabria.aplicaciones.controlSuma.business.service.EntornoService;
+import es.gobcantabria.aplicaciones.controlSuma.business.service.InventarioOtrasService;
+import es.gobcantabria.aplicaciones.controlSuma.business.service.InventarioPersonaService;
+import es.gobcantabria.aplicaciones.controlSuma.business.service.InventarioService;
+import es.gobcantabria.aplicaciones.controlSuma.business.service.PersonaService;
+import es.gobcantabria.aplicaciones.controlSuma.business.service.RolService;
+import es.gobcantabria.aplicaciones.controlSuma.business.service.TecnologiaService;
+import es.gobcantabria.aplicaciones.controlSuma.exception.ControlSumaException;
+import es.gobcantabria.aplicaciones.controlSuma.util.Constantes;
+import es.gobcantabria.aplicaciones.controlSuma.web.Enum.LogicosEnum;
+import es.gobcantabria.aplicaciones.controlSuma.web.Enum.NivelIncidenciaEnum;
+import es.gobcantabria.aplicaciones.controlSuma.web.Enum.TipoTransicionEnum;
+import es.gobcantabria.aplicaciones.controlSuma.web.Filter.InventarioFilter;
+import es.gobcantabria.aplicaciones.controlSuma.web.model.EntornoModel;
+import es.gobcantabria.aplicaciones.controlSuma.web.model.InventarioModel;
+import es.gobcantabria.aplicaciones.controlSuma.web.model.InventarioOtrasModel;
+import es.gobcantabria.aplicaciones.controlSuma.web.model.InventarioPersonaModel;
+
+
+
+/**
+ * Controlador para los Inventarios
+ * 
+ * @author malba
+ * 
+ */
+@Controller
+@RequestMapping(value = "/auth/inventario")
+public class InventarioController {
+
+	@Autowired
+	private MessageSource messages;
+
+	@Autowired
+	private static final Logger logger = LoggerFactory
+			.getLogger(HomeController.class);
+
+	@Autowired
+	private InventarioService inventarioService;
+	@Autowired
+	private InventarioOtrasService inventarioOtrasService;
+	@Autowired
+	private TecnologiaService tecnologiaService;
+
+	@Autowired
+	private RolService rolService;
+	
+	@Autowired
+	private AreaFuncionalService areaFuncionalService;
+	@Autowired
+	private EntornoService entornoServie;
+	@Autowired
+	private InventarioPersonaService inventarioPersonaService;
+	@Autowired
+	private PersonaService personaService;
+
+	@Autowired
+	private EntornoHelper helper;
+	@Autowired
+	private InventarioOtrasHelper helperInventarioOtras;
+	
+	@Autowired
+	private InventarioHelper helperInventario;
+	
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	public String mostrarInventarioCompleto(ModelMap model,
+			HttpServletRequest request) {
+		logger.debug("Entrando en el List de Inventario");
+
+		String template = Constantes.INVENTARIOS_LIST_TEMPLATE;
+		InventarioFilter filtro = (InventarioFilter) request.getSession()
+				.getAttribute("filtroInventario");
+		if (filtro == null) {
+			filtro = new InventarioFilter();
+		}
+		cargarCombosFormulario(model);
+		model.put("filtroInventario", filtro);
+
+		try {
+			List<InventarioDTO> listaInventario = inventarioService
+					.findByActivos();
+			model.put("listInventario", listaInventario);
+
+			return template;
+		} catch (Exception ex) {
+			logger.error(ex.getMessage());
+			request.setAttribute("error", ex.getMessage());
+			return "genericErrorPage";
+		}
+
+	}
+
+	@RequestMapping(value = "/search")
+	public String search(InventarioFilter Filtro, ModelMap model,
+			HttpServletRequest request) {
+		logger.debug("search()");
+		InventarioFilter filtro = (InventarioFilter) request.getSession()
+				.getAttribute("filtroInventario");
+		if (filtro == null) {
+			filtro = new InventarioFilter();
+		}
+	
+		model.put("filtroInventario", filtro);
+		String template = Constantes.INVENTARIOS_LIST_TEMPLATE;
+
+		return template;
+
+	}
+
+	@RequestMapping(value = "/new", method = RequestMethod.GET)
+	public String nuevoInventario(ModelMap model, HttpServletRequest request) {
+
+		String template = Constantes.INVENTARIOS_FORM_TEMPLATE;
+
+		InventarioModel modelo = (InventarioModel) request.getSession()
+				.getAttribute("datosInventario");
+		if (modelo == null) {
+			modelo = new InventarioModel();
+
+		}
+
+		cargarCombosFormulario(model);
+		model.put("tipoFormulario", "create");
+		model.put("datosInventario", modelo);
+
+		return template;
+
+	}
+
+	@RequestMapping(value = "/new", method = RequestMethod.POST)
+	public String crearInventario(
+			@ModelAttribute("datosInventario") @Valid InventarioModel inventario,
+			BindingResult result, ModelMap model) {
+
+		String template = Constantes.INVENTARIOS_FORM_TEMPLATE;
+
+		if (result.getErrorCount() > 0) {
+//			cargarCombosFormulario(model);
+			return template;
+		}
+
+		// Se guarda los datos
+		InventarioDTO dto = inventario.convert();
+
+		try {
+			inventarioService.createInventario(dto);
+			model.put("tipoFormulario", "update");
+
+		} catch (ControlSumaException e) {
+			model.put(Constantes.MENSAJE_ERROR, e.getMessage());
+		}
+		cargarCombosFormulario(model);
+
+		return template;
+
+	}
+
+	@RequestMapping(value = "/edit", method = RequestMethod.GET)
+	public String edit(@RequestParam("id") Long idInventario, ModelMap model, Model m,
+			HttpServletRequest request) {
+
+		String template = Constantes.INVENTARIOS_FORM_TEMPLATE;
+		InventarioModel modelo = new InventarioModel();
+		InventarioDTO dto = inventarioService.getById(idInventario);
+		InventarioOtrasModel otrasModel = null;
+		List<EntornoDTO> listEntorno = entornoServie.entornoIdAplicacion(idInventario);
+		List<InventarioPersonaDTO> listInventarioPersonaDTO = inventarioPersonaService.personaIdAplicacion(idInventario);
+		EntornoDTO entorno = new EntornoDTO();
+		EntornoDTO entornoPRO = new EntornoDTO();
+		EntornoDTO entornoPRE = new EntornoDTO();
+	
+
+		
+		modelo = new InventarioModel(dto);
+	
+		if ( dto.getInventarioOtra() != null) {
+			otrasModel = new InventarioOtrasModel(dto.getInventarioOtra());
+		} else {
+			otrasModel = new InventarioOtrasModel();
+		}
+		
+
+		model.put("tipoFormulario", "update");
+		cargarCombosFormulario(model);
+		model.put("datosInventario", modelo);
+		model.put("datosInformacionAdicional", otrasModel);
+		
+		
+		for (int i = 0; i < listEntorno.size(); i++) {
+			
+			if(listEntorno.get(i).gettEntorno().equalsIgnoreCase("DES"))
+			{
+				model.put("datosEntorno", listEntorno.get(i));
+				m.addAttribute("entorno", listEntorno.get(i).gettEntorno());
+				
+			}
+			
+			if(listEntorno.get(i).gettEntorno().equalsIgnoreCase("PRE"))
+			{
+				model.put("datosEntornoPRE", listEntorno.get(i));
+				m.addAttribute("entornoPRE", listEntorno.get(i).gettEntorno());
+				
+			}
+			
+			if(listEntorno.get(i).gettEntorno().equalsIgnoreCase("PRO"))
+			{
+				model.put("datosEntornoPRO", listEntorno.get(i));
+				m.addAttribute("entornoPRO", listEntorno.get(i).gettEntorno());
+				
+			}
+			
+		}
+
+	    
+	    model.put("listDesarrolladores", listInventarioPersonaDTO);
+		return template;
+
+	}
+
+	@RequestMapping(value = "/edit", method = RequestMethod.POST)
+	public String updateInventario(
+			@ModelAttribute("datosInventario") @Valid InventarioModel inventario,
+			BindingResult result, ModelMap model) {
+
+		String template = Constantes.INVENTARIOS_LIST_TEMPLATE;
+
+//		if (result.getErrorCount() > 0) {
+//			return template;
+//		}
+
+		// Se guarda los datos
+		InventarioDTO dto = inventario.convert();
+
+		try {
+			inventarioService.updateInventario(dto);
+		} catch (ControlSumaException e) {
+			model.put(Constantes.MENSAJE_ERROR, e.getMessage());
+		}
+
+		return template;
+
+	}
+	
+	
+	@RequestMapping(value = "/save", method = RequestMethod.POST)
+	public String updateInformacionAdicional(
+			@ModelAttribute("datosInventario") @Valid InventarioModel inventario,
+			BindingResult result, ModelMap model) {
+
+		String template = Constantes.INVENTARIOS_FORM_TEMPLATE;
+
+		if (result.getErrorCount() > 0) {
+			return template;
+		}
+
+		// Se guarda los datos
+		InventarioDTO dto = inventario.convert();
+
+		try {
+			inventarioService.updateInventario(dto);
+		} catch (ControlSumaException e) {
+			model.put(Constantes.MENSAJE_ERROR, e.getMessage());
+		}
+
+		return template;
+
+	}
+//	@RequestMapping(value = "/InformacionAdicional", method = RequestMethod.POST)
+//	public String updateInformacionAdicional(
+//			@ModelAttribute("datosInformacionAdicional") @Valid InventarioOtrasModel inventarioOtras,
+//			BindingResult result, ModelMap model) {
+//
+//		//llamar al metodo que guarde estos registros syso
+//		InventarioOtrasDTO inventarioOtrasDTO = helperInventario.convertModelToDTO(inventarioOtras);
+//	//	inventarioOtrasService.otrasIdAplicacion(inventarioOtrasDTO);
+//		return null;
+//	}
+	
+	@RequestMapping(value = "/updateEntorno", method = RequestMethod.POST)
+	public String updateEntornos(
+			@ModelAttribute("datosEntorno") @Valid EntornoModel entornos,
+			BindingResult result, ModelMap model, HttpServletRequest request) {
+			EntornoDTO entornoDTO =	helper.convertModelToDTO(entornos);
+
+		//llamar al metodo que actualice estos registros 
+		entornoServie.actualizarEntorno(entornoDTO);
+		return "datosEntorno";
+	}
+	
+
+	
+	@RequestMapping(value = "/updateDatosInventario", method = RequestMethod.POST)
+	public String updateInformacionAdicional(
+			@ModelAttribute("datosInventario") @Valid InventarioModel inventarioModel,
+			BindingResult result, ModelMap model, HttpServletRequest request) {
+		
+		//realizar Conversion Model a DTO
+
+		String template = Constantes.INVENTARIOS_FORM_TEMPLATE;
+
+		if (result.getErrorCount() > 0) {
+			return template;
+		}
+		InventarioDTO inventarioDTO= inventarioModel.convert();
+
+		//llamar al metodo que actualice estos registros 
+		try {
+			inventarioService.updateInventario(inventarioDTO);
+		} catch (ControlSumaException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return template;
+	}
+	
+	@RequestMapping(value = "/updateInformacionAdicional", method = RequestMethod.POST)
+	public String updateInformacionAdicional(
+			@ModelAttribute("datosInformacionAdicional") @Valid InventarioOtrasModel otrasModel,
+			BindingResult result, ModelMap model, HttpServletRequest request) {
+			InventarioOtrasDTO otrasDTO =	helperInventarioOtras.convertModelToDTO(otrasModel);
+
+		//llamar al metodo que actualice estos registros 
+			inventarioOtrasService.actualizarInformacionAdicional(otrasDTO);
+		return "datosInformacionAdicional";
+	}
+	
+	
+	@RequestMapping(value = "/Desarrolladores", method = RequestMethod.POST)
+	public String updateDesarrolladores(
+			@ModelAttribute("listDesarrolladores") @Valid InventarioPersonaModel desarrolladores,
+			BindingResult result, ModelMap model) {
+
+		//llamar al metodo que guarde estos registros syso
+		return null;
+	}
+
+	/**
+	 * Método que cargar en el ModelMap la información necesaria para los combos
+	 * 
+	 * @param model
+	 */
+	private void cargarCombosFormulario(ModelMap model) {
+
+
+		List<RolDTO> listRoles = rolService.findAll();
+		
+		List<PersonaDTO> listPersonaGobierno =null;
+		List<PersonaDTO> listPersonaSuma =null;
+		
+		for (int i = 0; i < listRoles.size(); i++) {
+			if(listRoles.get(i).getNombre().equalsIgnoreCase("Gobierno"))
+			{
+			 
+			   listPersonaGobierno = personaService.findPersonaRol(listRoles.get(i).getId());
+			   model.put("listResponsableGobierno", listPersonaGobierno);
+			}
+			
+			if(listRoles.get(i).getNombre().equalsIgnoreCase("Suma"))
+			{
+				listPersonaSuma = personaService.findPersonaRol(listRoles.get(i).getId());
+				model.put("listResponsableSUMA", listPersonaSuma);
+			}
+			
+		}
+		
+		List<AreaFuncionalDTO> listAreaFuncional = areaFuncionalService.findAll();
+		model.put("listAreaFuncional", listAreaFuncional);
+		
+		List<TecnologiaDTO> listTecnologia = tecnologiaService.findAll();
+		model.put("listTecnologia", listTecnologia);
+		
+		List<String> tipoTransicion = TipoTransicionEnum.getListTipoTransicion();
+		
+		model.put("listTipoTrancision", tipoTransicion);
+		
+		List<String> listLogicos= LogicosEnum.getLogicos();
+		model.put("listLogicos",listLogicos);
+		
+       
+		
+		List<String> listNivelIncidencias= NivelIncidenciaEnum.getNivelIncidencias();
+		model.put("listNivelIncidencias",listNivelIncidencias);
+
+	}
+
+}

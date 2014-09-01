@@ -1,0 +1,330 @@
+#propiedades de la aplicacion
+app.name=Control SUMA
+app.name.abrev= controlSumaWAR
+
+app.version=1.0.0
+app.last.release=08/07/2014
+app.first.release=08/07/2014
+app.num.release=1
+app.status=evolucionando
+app.session.timeout=20 minutos
+
+app.java.version=1.6
+app.developBy=Grupo JEE
+app.aprobedBy=Grupo JEE
+app.server.deploy=Jboss EAP 6
+app.framework.base=amap 2.0 / spring mvc
+app.framework.base.url=http://amap.cantabria.es
+app.frameworks.js= jquery 1.9, jquery-validator
+app.frameworks.css=bootstrap jquery-ui 1.10
+
+app.technical.support=Centro de Atenci&oacute;n de Usuarios (CAU)
+app.technical.tlf=87333
+app.technical.email=cau@gobcantabria.es
+
+app.improvements.user=usuario1
+app.improvements.email=usuariog@cantabria.es
+app.improvements.tlf=942...
+
+app.avisolegal=Aqu&iacute; va el aviso legal...
+
+# Por regla general el nombre de las constantes sera app.<pantalla>.<tipo_dato>.<objeto>.atributo
+# Los tipos de datos son:
+#	* title: titulo de la pagina
+#	* heading: enunciado de la pagina
+#	* placeholder: placeholder de un campo input
+#	* button: literal de un determinado boton
+#	* link: url absoluta
+#	* label: etiqueta de un campo (readonly o no)
+
+# Pantallas
+
+# Pantalla - Login
+
+app.login.title=Acceso a controlSumaWAR
+app.login.heading.credenciales=Introduzca sus credenciales de acceso.
+app.login.placeholder.usuario.codigo=c&oacute;digo de usuario
+app.login.placeholder.usuario.password=password
+
+app.login.link.password.recordar=&iquest;Olvid&oacute; su contrase&ntilde;a?
+app.login.link.password.cambiar=&iquest;Quiere cambiar su contrase&ntilde;a?
+app.login.button.acceder=acceder
+
+app.login.label.version=versi&oacute;n
+
+# Pantalla - Header
+
+app.header.link.ayuda=Ayuda
+app.header.link.mapa=Mapa del web
+app.header.link.desconectar=Desconectar
+
+# Pantalla - missing
+
+app.404.title=Atenci&oacute;n!
+app.404.button.aceptar=Aceptar
+app.404.message=Ha intentanto acceder a una p&aacute;gina inexistente.
+app.404.image=missing.png
+
+
+# Pantalla - 403 - Denegado
+
+app.403.title=Atenci&oacute;n!
+app.403.button.aceptar=Aceptar
+app.403.image=key.png
+app.403.message=Est&aacute; intentanto acceder a una p&aacute;gina no autorizada para su perfil de usuario.
+
+# Pantalla - 408 - timeout
+
+app.408.title=Atenci&oacute;n!
+app.408.button.aceptar=Aceptar
+app.408.image=clock.png
+app.408.message=Se ha desconectado de Control de SUMA o bien ha excedido el tiempo m&aacute;ximo de inactividad establecido. Deber&aacute; autenticarse nuevamente
+
+# Pantalla - Error generico
+
+app.error.title=Atenci&oacute;n!
+app.error.button.aceptar=Aceptar
+app.error.image=error.png
+app.error.message=Ha ocurrido un error no controlado. Contacte con el CAU.
+
+# Pantalla - informacion
+
+app.info.title=Atenci&oacute;n!
+app.info.button.aceptar=Aceptar
+app.info.image=key.png
+app.info.message=Ha ocurrido un error no controlado. Contacte con el CAU.
+
+# Menu - informacion de la aplicacion
+
+app.menu.informacion.titulo=Informaci&oacute;n
+app.menu.informacion.changelog=Control de cambios
+app.menu.informacion.tecnica=T&eacute;cnica y de contacto
+
+# Barra general
+
+app.bar.user=Usuario
+app.bar.roles=Roles
+
+
+# Formulario de Inventario
+
+inventario.form.datosInventario.codInventario=C&oacute;digo Inventario
+inventario.form.datosInventario.codJira=C&oacute;digo JIRA
+inventario.form.datosInventario.nombreInventario= Nombre
+inventario.form.datosInventario.version=Versi&oacute;n
+inventario.form.datosInventario.descripcion=Descripci&oacute;n
+inventario.form.datosInventario.fechaAlta=Fecha Alta
+inventario.form.datosInventario.fechaUltMod=F. &Uacute;lt. Modificaci&oacute;n
+inventario.form.datosInventario.responsableGob=Responsable en Gobierno
+inventario.form.datosInventario.responsableSUMA=Responsable en SUMA
+inventario.form.datosInventario.usuarioFinal=Usuario Final
+inventario.form.datosInventario.areaFuncional=&Aacute;rea funcional
+inventario.form.datosInventario.tecnologia=Tecnolog&iacute;a
+inventario.form.datosInventario.subAreaFuncional=Sub &Aacute;rea Funcional
+inventario.form.datosInventario.observaciones=Observaciones
+inventario.form.datosInventario.botonLimpiar=Limpiar
+inventario.form.datosInventario.botonSubmit=Guardar
+
+#Mensajes de Error
+error.inventario.form.create=Se ha producido un error al crear un nuevo inventario 
+error.inventario.form.update=Se ha producido un error al actualizar un nuevo inventario 
+
+# Formulario de Persona
+
+persona.form.datosPersona.codPersona = C&oacute;digo Persona
+persona.form.datosPersona.codJira = C&oacute;digo Jira
+persona.form.datosPersona.nombre = Nombre
+persona.form.datosPersona.primerApellido = Primer Apellido
+persona.form.datosPersona.segundoApellido = Segundo Apellido
+persona.form.datosPersona.email = Email
+persona.form.datosPersona.telefonoContacto = Tel&eacute;fono de Contacto
+persona.form.datosPersona.fechaUltMod = F. &Uacute;lt. Modificaci&oacute;n
+persona.form.datosPersona.rol = Rol
+persona.form.datosPersona.botonLimpiar = Limpiar
+persona.form.datosPersona.botonSubmit = Guardar
+
+#Mensajes de Error
+error.persona.form.create = Se ha producido un error al crear una nueva persona
+error.persona.form.update = Se ha producido un error al actualizar la persona
+
+#Formulario de Rol
+
+rol.form.datosRol.nombre = Nombre
+rol.form.datosRol.fechaAlta = Fecha de Alta
+rol.form.datosRol.fechaUltMod = F. &Uacute;lt. Modificaci&oacute;n
+rol.form.datosRol.descripcion = Descripci&oacute;n
+rol.form.datosRol.botonLimpiar = Limpiar
+rol.form.datosRol.botonSubmit = Guardar
+
+#Mensajes de Error
+error.rol.form.create = Se ha producido un error al crear un nuevo rol
+error.rol.form.update = Se ha producido un error al actualizar el rol
+
+#Formulario de Tecnologia
+
+tecnologia.form.datosTecnologia.codTecnologia = C&oacute;digo Tecnolog&iacute;a
+tecnologia.form.datosTecnologia.descripcion = Descripci&oacute;n
+#tecnologia.form.datosTecnologia.fechaAlta = Fecha de Alta
+tecnologia.form.datosTecnologia.fechaUltMod = F. &Uacute;lt. Modificaci&oacute;n
+tecnologia.form.datosTecnologia.botonLimpiar = Limpiar
+tecnologia.form.datosTecnologia.botonSubmit = Guardar
+
+#Mensajes de Error
+error.tecnologia.form.create = Se ha producido un error al crear una nueva tecnolog&iacute;a
+error.tecnologia.form.update = Se ha producido un error al actualizar la tecnolog&iacute;a
+
+
+#Formulario de Área Funcional
+
+areaFuncional.form.datosAreaFuncional.nombre = Nombre
+areaFuncional.form.datosAreaFuncional.fechaAlta = Fecha de Alta
+areaFuncional.form.datosAreaFuncional.fechaUltMod = F. &Uacute;lt. Modificaci&oacute;n
+areaFuncional.form.datosAreaFuncional.botonLimpiar = Limpiar
+areaFuncional.form.datosAreaFuncional.botonSubmit = Guardar
+
+#Mensajes de Error
+
+error.areaFuncional.form.create = Se ha producido un error al crear un nuevo &Acute;rea Funcional
+error.areaFuncional.form.update = Se ha producido un error al actualizar el &Acute;rea Funcional
+
+#Formulario de Información Adicional
+
+inventario.form.InformacionAdicional.fechaUltMod=F. &Uacute;lt. Modificaci&oacute;n
+inventario.form.InformacionAdicional.docAnalisisFuncional=&#191;  doc. An&aacute;lisis Funcional?
+inventario.form.InformacionAdicional.docDisenoTecnico=&#191;  doc. Dise&ntilde;o T&eacute;nico?
+inventario.form.InformacionAdicional.docManualInstalacion=&#191;  doc. Manual de instalaci&oacute;n?
+inventario.form.InformacionAdicional.docPlanPruebas=&#191;  doc. Plan de Pruebas?
+inventario.form.InformacionAdicional.mantCorrectivoPrevisto=&#191; Est&aacute; previsto Mantenimiento Correctivo?
+inventario.form.InformacionAdicional.mantEvolutivoPrevisto=&#191; Est&aacute; previsto Mantenimiento Evolutivo?
+inventario.form.InformacionAdicional.trabajosVuelo=&#191; Est&aacute; previsto trabajos en Vuelo?
+inventario.form.InformacionAdicional.correctivo=Informaci&oacute;n Adicional sobre Mantenimiento Correctivo
+inventario.form.InformacionAdicional.docOtra=Otra Informaci&oacute;n Relevante
+inventario.form.InformacionAdicional.evolutivo=Informaci&oacute;n Adicional sobre Mantenimiento Evolutivo
+inventario.form.InformacionAdicional.inventarioObjetos=Inventario de Objetos, Procesos, etc.
+inventario.form.InformacionAdicional.nivelCalidadCodigo=Nivel de Calidad de C&oacute;digo Fuente
+inventario.form.InformacionAdicional.nivelIncidencias=Nivel de incidencias
+inventario.form.InformacionAdicional.observaciones=Otras Observaciones relevantes
+inventario.form.InformacionAdicional.periodoUsoAplicacion=Periodos cr&iacute;ticos de uso de la aplicaci&oacute;n
+inventario.form.InformacionAdicional.rutaDoc=Ruta de la documentaci&oacute;n
+inventario.form.InformacionAdicional.tipoTransicion=Tipo de Transici&oacute;n
+inventario.form.InformacionAdicional.descripciontrabajosVuelo=Descripci&oacute;n Trabajos en Vuelo
+
+inventario.form.datosInformacionAdicional.fechaUltMod=F. &Uacute;lt. Modificaci&oacute;n
+inventario.form.datosInformacionAdicional.docAnalisisFuncional=&#191;  doc. An&aacute;lisis Funcional?
+inventario.form.datosInformacionAdicional.docDisenoTecnico=&#191;  doc. Dise&ntilde;o T&eacute;nico?
+inventario.form.datosInformacionAdicional.docManualInstalacion=&#191;  doc. Manual de instalaci&oacute;n?
+inventario.form.datosInformacionAdicional.docPlanPruebas=&#191;  doc. Plan de Pruebas?
+inventario.form.datosInformacionAdicional.mantCorrectivoPrevisto=&#191; Est&aacute; previsto Mantenimiento Correctivo?
+inventario.form.datosInformacionAdicional.mantEvolutivoPrevisto=&#191; Est&aacute; previsto Mantenimiento Evolutivo?
+inventario.form.datosInformacionAdicional.trabajosVuelo=&#191; Est&aacute; previsto trabajos en Vuelo?
+inventario.form.datosInformacionAdicional.correctivo=Informaci&oacute;n Adicional sobre Mantenimiento Correctivo
+inventario.form.datosInformacionAdicional.docOtra=Otra Informaci&oacute;n Relevante
+inventario.form.datosInformacionAdicional.evolutivo=Informaci&oacute;n Adicional sobre Mantenimiento Evolutivo
+inventario.form.datosInformacionAdicional.inventarioObjetos=Inventario de Objetos, Procesos, etc.
+inventario.form.datosInformacionAdicional.nivelCalidadCodigo=Nivel de Calidad de C&oacute;digo Fuente
+inventario.form.datosInformacionAdicional.nivelIncidencias=Nivel de incidencias
+inventario.form.datosInformacionAdicional.observaciones=Otras Observaciones relevantes
+inventario.form.datosInformacionAdicional.periodoUsoAplicacion=Periodos cr&iacute;ticos de uso de la aplicaci&oacute;n
+inventario.form.datosInformacionAdicional.rutaDoc=Ruta de la documentaci&oacute;n
+inventario.form.datosInformacionAdicional.tipoTransicion=Tipo de Transici&oacute;n
+inventario.form.datosInformacionAdicional.descripciontrabajosVuelo=Descripci&oacute;n Trabajos en Vuelo
+inventario.form.datosInformacionAdicional.botonSubmit= Guardar
+inventario.form.datosInformacionAdicional.detalleIncidencia= Detalle de la incidencia
+inventario.form.datosInformacionAdicional.incidencia= Incidencias/trabajos en desarrollo
+inventario.form.datosInformacionAdicional.integracion= Nivel de Integracion con otras APPs
+inventario.form.datosInformacionAdicional.detalleIntegracion= Detalle integracion de APPs
+inventario.form.datosInformacionAdicional.requiereSW= Requiere SW adicional
+inventario.form.datosInformacionAdicional.garantia= Dispone de Garantia
+inventario.form.datosInformacionAdicional.detalleGarantia= Detalle de proovedor y contacto
+
+inventario.form.datosInformacionAdicional.analisisFuncionalvaloracion= Valoracion
+inventario.form.datosInformacionAdicional.fechaUltActAnalisisFuncional= F. &Uacute;lt. Modificaci&oacute;n
+inventario.form.datosInformacionAdicional.detalleAnalisis= Detalle an&aacute;lisis funcional
+inventario.form.datosInformacionAdicional.detalleDiseno=Detalle del Dise&ntilde;o
+inventario.form.datosInformacionAdicional.fechaUltActDiseno=F. &Uacute;lt. Modificaci&oacute;n
+inventario.form.datosInformacionAdicional.valoracionDiseno = Valoracion
+
+
+inventario.form.datosInformacionAdicional.valoracionPlanPrueba = Valoraci&oacute;n
+inventario.form.datosInformacionAdicional.detallePlanPrueba = Detalle del Plan de pruebas
+inventario.form.datosInformacionAdicional.fechaUltActPlanPrueba = F. &Uacute;lt. Modificaci&oacute;n
+
+inventario.form.datosInformacionAdicional.valoracionManualInstalacion=Valoraci&oacute;n
+inventario.form.datosInformacionAdicional.fechaUltActManualInstalacion = F. &Uacute;lt. Modificaci&oacute;n
+inventario.form.datosInformacionAdicional.detalleManualInstalacion=Detalle del Manual de Instalaci&oacute;n
+
+inventario.form.datosInformacionAdicional.docuCodigo=Documentaci&oacute;n C&oacute;digo Fuente
+
+#Formulario Entornos
+inventario.form.datosEntorno.fechaAlta=Fecha Alta
+inventario.form.datosEntorno.fechaUltMod= F. &Uacute;lt. Modificaci&oacute;n
+inventario.form.datosEntorno.confLdap= Configuraci&oacute;n LDAP
+inventario.form.datosEntorno.datosBbdd = Datos de la BBDD
+inventario.form.datosEntorno.tEntorno = Entorno de Desarrollo
+inventario.form.datosEntorno.frameworks = Frameworks
+inventario.form.datosEntorno.herramientaConstruccion = Herramientas de Construcci&oacute;n
+inventario.form.datosEntorno.observaciones = Observaciones
+inventario.form.datosEntorno.rutaLog = Ruta del Log
+inventario.form.datosEntorno.rutaSvn= Ruta Subversion
+inventario.form.datosEntorno.servidorDespliegue= Servidor Despliegue
+inventario.form.datosEntorno.url= URL de acceso a la aplicacion
+inventario.form.datosEntorno.datosEntorno= Datos del entorno
+inventario.form.datosEntorno.versionJava= Versi&oacute;n de Java
+inventario.form.datosEntorno.inventario= Inventario
+   
+   
+   
+#Formulario EntornoPRE
+inventario.form.datosEntornoPRE.fechaAlta=Fecha Alta
+inventario.form.datosEntornoPRE.fechaUltMod= F. &Uacute;lt. Modificaci&oacute;n
+inventario.form.datosEntornoPRE.confLdap= Configuraci&oacute;n LDAP
+inventario.form.datosEntornoPRE.datosBbdd = Datos de la BBDD
+inventario.form.datosEntornoPRE.tEntorno = Entorno de Pre-Producci&oacute;n
+inventario.form.datosEntornoPRE.frameworks = Frameworks
+inventario.form.datosEntornoPRE.herramientaConstruccion = Herramientas de Construcci&oacute;n
+inventario.form.datosEntornoPRE.observaciones = Observaciones
+inventario.form.datosEntornoPRE.rutaLog = Ruta del Log
+inventario.form.datosEntornoPRE.rutaSvn= Ruta Subversion
+inventario.form.datosEntornoPRE.servidorDespliegue= Servidor Despliegue
+inventario.form.datosEntornoPRE.url= URL de acceso a la aplicaci&oacute;n
+inventario.form.datosEntornoPRE.datosEntorno= Datos del entorno
+inventario.form.datosEntornoPRE.versionJava= Versi&oacute;n de Java
+inventario.form.datosEntornoPRE.inventario= Inventario
+
+
+#Formulario EntornoPRO
+inventario.form.datosEntornoPRO.fechaAlta=Fecha Alta
+inventario.form.datosEntornoPRO.fechaUltMod= F. &Uacute;lt. Modificaci&oacute;n
+inventario.form.datosEntornoPRO.confLdap= Configuraci&oacute;n LDAP
+inventario.form.datosEntornoPRO.datosBbdd = Datos de la BBDD
+inventario.form.datosEntornoPRO.tEntorno = Entorno de Producci&oacute;n
+inventario.form.datosEntornoPRO.frameworks = Frameworks
+inventario.form.datosEntornoPRO.herramientaConstruccion = Herramientas de Construcci&oacute;n
+inventario.form.datosEntornoPRO.observaciones = Observaciones
+inventario.form.datosEntornoPRO.rutaLog = Ruta del Log
+inventario.form.datosEntornoPRO.rutaSvn= Ruta Subversion
+inventario.form.datosEntornoPRO.servidorDespliegue= Servidor Despliegue
+inventario.form.datosEntornoPRO.url= URL de acceso a la aplicaci&oacute;n
+inventario.form.datosEntornoPRO.datosEntorno= Datos del entorno
+inventario.form.datosEntornoPRO.versionJava= Versi&oacute;n de Java
+inventario.form.datosEntornoPRO.inventario= Inventario
+
+
+
+error.dao.servicios= Se ha producido un error interno del sistema. Por favor Int&eacute;ntelo m&aacute;s tarde
+inventario.form.datosInformacionAdicional.update.correcto=Informaci&oacute;n Adicional guardada Satisfactoriamente
+inventario.form.datosInventario.update.correcto=Datos Inventarios guardado Satisfactoriamente
+inventario.form.entornoDES.update.correcto=Datos de Configuraci&oacute;n Entorno Desarrollo guardado Satisfactoriamente
+inventario.form.entornoPRE.update.correcto=Datos de Configuraci&oacute;n Entorno PreProducci&oacute;n guardado Satisfactoriamente
+inventario.form.entornoPOS.update.correcto=Datos de Configuraci&oacute;n Entorno Producci&oacute;n guardado Satisfactoriamente
+
+
+
+cargajira.form.personas.analistafuncionalGob=Responsable Gobierno
+cargajira.form.personas.analistafuncionalSUMA=Responsable SUMA
+cargajira.form.personas.usuarioFinal=Usuario final
+cargajira.form.personas.desarrolladores= Desarrolladores
+
+cargajira.form.personas.warning.noRoles= Imposible Sincronizar las Personas. No hay Roles Sincronizados en el sistema 
+cargajira.form.personas.warning.noRoles= Imposible Sincronizar las Personas. No hay Roles Sincronizados en el sistema 
+cargarjira.form.personas.info.correcto=Se ha cargado los datos de JIRA en la Aplicaci&oacute;n

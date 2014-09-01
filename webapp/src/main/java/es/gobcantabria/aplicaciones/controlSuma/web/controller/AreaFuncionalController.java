@@ -1,0 +1,160 @@
+package es.gobcantabria.aplicaciones.controlSuma.web.controller;
+
+import java.util.List;
+
+import javax.validation.Valid;
+import javax.servlet.http.HttpServletRequest;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import es.gobcantabria.aplicaciones.controlSuma.business.dto.AreaFuncionalDTO;
+import es.gobcantabria.aplicaciones.controlSuma.business.service.AreaFuncionalService;
+import es.gobcantabria.aplicaciones.controlSuma.exception.ControlSumaException;
+import es.gobcantabria.aplicaciones.controlSuma.util.Constantes;
+import es.gobcantabria.aplicaciones.controlSuma.web.Filter.AreaFuncionalFilter;
+import es.gobcantabria.aplicaciones.controlSuma.web.model.AreaFuncionalModel;
+import es.gobcantabria.aplicaciones.controlSuma.web.model.PersonaModel;
+
+@Controller
+@RequestMapping(value = "/auth/areaFuncional")
+public class AreaFuncionalController {
+
+	@Autowired
+	private MessageSource messages;
+	@Autowired
+	private static final Logger logger = LoggerFactory
+			.getLogger(HomeController.class);
+	@Autowired
+	private AreaFuncionalService areaFuncionalService;
+
+	/*
+	 * 
+	 * @param model
+	 * 
+	 * @param request
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "/listAreaFuncional", method = RequestMethod.GET)
+	public String mostrarListadoDeAreasFuncionalesCompleto(ModelMap model,
+			HttpServletRequest request) {
+		logger.debug("Entrando en el List de Área Funcional");
+
+		String template = Constantes.AREA_FUNCIONAL_LIST_TEMPLATE;
+		//AreaFuncionalFilter filtro = (AreaFuncionalFilter) request.getSession()
+				//.getAttribute("filtroAreaFuncional");
+		//if (filtro == null) {
+			//filtro = new AreaFuncionalFilter();
+		//}
+		//model.put("filtroAreaFuncional", filtro);
+		// Mensajes de error y alerta
+		model.put(Constantes.MENSAJE_INFO,
+				request.getParameter(Constantes.MENSAJE_INFO));
+		model.put(Constantes.MENSAJE_ERROR,
+				request.getParameter(Constantes.MENSAJE_ERROR));
+		try {
+			List<AreaFuncionalDTO> listaAreas = areaFuncionalService.findAll();
+			model.put("listAreas", listaAreas);
+			return template;
+		} catch (Exception ex) {
+			logger.error(ex.getMessage());
+			request.setAttribute("error", ex.getMessage());
+			return "genericErrorPage";
+		}
+	}
+
+	/**
+	 * Métodos Get y Post para editar Área Funcional
+	 * 
+	 * @param idAreaFuncional
+	 * @param model
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "/edit", method = RequestMethod.GET)
+	public String mostrarFormularioEditar(
+			@RequestParam("id") Long idAreaFuncional, ModelMap model,
+			HttpServletRequest request) {
+		String template = Constantes.AREA_FUNCIONAL_FORM_TEMPLATE;
+		AreaFuncionalModel modelo = null;
+		AreaFuncionalDTO dto = areaFuncionalService.getById(idAreaFuncional);
+		if (dto != null) {
+			modelo = new AreaFuncionalModel(dto);
+		} else {
+			modelo = new AreaFuncionalModel();
+		}
+		model.put("datosAreaFuncional", modelo);
+		// Mensajes de error y alerta
+		model.put(Constantes.MENSAJE_INFO,
+				request.getParameter(Constantes.MENSAJE_INFO));
+		model.put(Constantes.MENSAJE_ERROR,
+				request.getParameter(Constantes.MENSAJE_ERROR));
+		return template;
+	}
+
+	/*
+	 * @param areaFuncional
+	 * 
+	 * @param result
+	 * 
+	 * @param model
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "update")
+	public String updateAreaFuncional(
+			@ModelAttribute("datosAreaFuncional") @Valid AreaFuncionalModel areaFuncional,
+			BindingResult result, ModelMap model) {
+		String template = Constantes.AREA_FUNCIONAL_FORM_TEMPLATE;
+		// Se comprueba si hay errores
+		if (result.hasErrors()) {
+			model.put("datosAreaFuncional", areaFuncional);
+			return template;
+		} else {
+			AreaFuncionalDTO dto = areaFuncional.convert();
+			try {
+				areaFuncionalService.update(dto);
+				model.put("mensajeInfo", Constantes.OPERACION_OK);
+			} catch (ControlSumaException e) {
+				model.put(Constantes.MENSAJE_ERROR, e.getMessage());
+			}
+			return template;
+		}
+	}
+
+	/*
+	 * @param model
+	 * 
+	 * @param request
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "volver")
+	public String volver() {
+		return "redirect:listAreaFuncional";
+	}
+
+	@RequestMapping(value = "/delete", method = RequestMethod.GET)
+	public String delete(@RequestParam("id") Long idAreaFuncional, ModelMap model, HttpServletRequest request, RedirectAttributes attributes) {
+		try{
+			areaFuncionalService.delete(idAreaFuncional);
+			attributes.addAttribute("mensajeInfo","Elemento borrado satisfactoriamente.");
+		}catch(Exception e) {
+			attributes.addAttribute("mensajeError", "No se puede borrar el elemento.");
+			e.printStackTrace();
+		}
+		return "redirect:/auth/areaFuncional/listAreaFuncional";
+	}
+
+}

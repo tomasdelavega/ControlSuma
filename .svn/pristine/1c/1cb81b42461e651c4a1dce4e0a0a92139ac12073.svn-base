@@ -1,0 +1,136 @@
+package es.gobcantabria.aplicaciones.controlSuma.web.controller;
+
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+
+
+
+
+import es.gobcantabria.aplicaciones.controlSuma.business.dto.RolDTO;
+import es.gobcantabria.aplicaciones.controlSuma.business.service.RolService;
+import es.gobcantabria.aplicaciones.controlSuma.exception.ControlSumaException;
+import es.gobcantabria.aplicaciones.controlSuma.util.Constantes;
+import es.gobcantabria.aplicaciones.controlSuma.web.model.RolModel;
+
+@Controller
+@RequestMapping(value = "/auth/rol")
+public class RolController {
+	@Autowired  
+	private MessageSource messages;
+	@Autowired
+	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	@Autowired
+	private RolService rolService;
+	
+	/**
+	 * 
+	 * @param model
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "/listRol", method = RequestMethod.GET)
+	public String mostrarListadodeRolesCompleto(ModelMap model, HttpServletRequest request){
+		logger.debug("Entrando en el List de Roles");
+		
+		String template = Constantes.ROLES_LIST_TEMPLATE;
+		try {
+				List<RolDTO> listaRoles = rolService.findAll();
+				model.put("listRoles", listaRoles);
+			return template;
+		} catch (Exception ex) {
+			logger.error(ex.getMessage());
+			request.setAttribute("error", ex.getMessage());
+			return "genericErrorPage";
+		}
+	}
+	
+	/*
+	 * Método que gestiona la acción del botón editar dentro de la lista de roles.
+	 * Recibe el id del Rol para identificar univocamente a cada elemento.
+	 * */
+	/**
+	 * 
+	 * @param idRol
+	 * @param model
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value="/edit",method = RequestMethod.GET)
+	public String mostrarFormularioEditar(@RequestParam("id") Long idRol, ModelMap model, HttpServletRequest request){
+		String template = Constantes.ROLES_FORM_TEMPLATE;
+		RolModel modelo = null;
+		RolDTO dto = rolService.getById(idRol);
+		if(dto!=null){
+			modelo = new RolModel(dto);
+		}else {
+			modelo = new RolModel();
+		}
+		model.put("datosRol",modelo);
+		
+		//Código agregado para la implementación del botón volver
+		String referer=request.getHeader("Referer");
+		request.getSession().setAttribute("botonVolver", referer);
+		
+		request.setAttribute("botonVolver",referer);
+		
+		return template;
+	}
+	
+	/**
+	 *
+	 * Método encargado de actualizar los datos introducidos en el formulario
+	 * de editar rol.
+	 */
+	/**
+	 * 
+	 * @param rol
+	 * @param result
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "update")
+	public String updateRol(@ModelAttribute("datosRol") @Valid RolModel rol, BindingResult result, ModelMap model){
+		
+		String template = Constantes.ROLES_FORM_TEMPLATE;
+		/*Se comprueba si hay errores*/
+		if(result.hasErrors()){
+			return template;
+		}
+		/*Guardar datos*/
+		RolDTO dto = rol.convert();
+		try{
+			rolService.updateRol(dto);
+		}catch (ControlSumaException e) {
+			model.put(Constantes.MENSAJE_ERROR, e.getMessage());
+		}
+		return template;
+	}
+	/**
+	 * 
+	 * @param model
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "volver")
+	public String volver(ModelMap model, HttpServletRequest request) {
+		
+		String referer=	(String) request.getSession().getAttribute("botonVolver");
+
+		return "redirect:"+referer;
+	}
+}

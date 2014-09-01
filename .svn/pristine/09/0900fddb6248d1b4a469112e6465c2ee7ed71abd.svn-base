@@ -1,0 +1,288 @@
+package es.gobcantabria.aplicaciones.controlSuma.web.model;
+
+import java.io.Serializable;
+import java.util.Date;
+
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import es.gobcantabria.aplicaciones.controlSuma.business.domain.AreaFuncional;
+import es.gobcantabria.aplicaciones.controlSuma.business.domain.Tecnologia;
+import es.gobcantabria.aplicaciones.controlSuma.business.dto.AreaFuncionalDTO;
+import es.gobcantabria.aplicaciones.controlSuma.business.dto.InventarioDTO;
+import es.gobcantabria.aplicaciones.controlSuma.business.dto.InventarioOtrasDTO;
+import es.gobcantabria.aplicaciones.controlSuma.business.dto.PersonaDTO;
+import es.gobcantabria.aplicaciones.controlSuma.business.dto.TecnologiaDTO;
+
+public class InventarioModel implements Serializable {
+
+	private Long id;
+
+	@Size(min = 1, max = 200, message = "Formato de Inventario incorrecto")
+	private String subAreaFuncional;
+
+	@NotEmpty(message = "Campo Obligatorio")
+	@Size(min = 1, max = 50, message = "Formato de Inventario incorrecto")
+	private String codInventario;
+
+	@NotEmpty(message = "Campo Obligatorio")
+	@Size(min = 1, max = 50, message = "Formato de Inventario incorrecto")
+	private String codJira;
+
+	@NotEmpty(message = "Campo Obligatorio")
+	@Size(min = 1, max = 500, message = "Formato de Inventario incorrecto")
+	private String descripcion;
+
+	@NotEmpty
+	@Size(min = 1, max = 100)
+	private String nombreInventario;
+
+	@Size(min = 1, max = 500, message = "Formato de Inventario incorrecto")
+	private String observaciones;
+
+	@NotEmpty(message = "Campo Obligatorio")
+	@Size(min = 1, max = 10, message = "Formato de Inventario incorrecto")
+	private String version;
+
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private Date fechaAlta;
+
+	@NotEmpty(message = "Campo Obligatorio")
+	private String responsableSUMA;
+	@NotEmpty(message = "Campo Obligatorio")
+	private String areaFuncional;
+	@NotEmpty(message = "Campo Obligatorio")
+	private String usuarioFinal;
+	@NotEmpty(message = "Campo Obligatorio")
+	private String responsableGob;
+	@NotNull(message = "Campo Obligatorio")
+	private String tecnologia;
+	
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private Date fechaUltMod;
+	
+	 private int activo;
+
+
+
+	public int getActivo() {
+		return activo;
+	}
+
+	public void setActivo(int activo) {
+		this.activo = activo;
+	}
+
+	public Date getFechaUltMod() {
+		return fechaUltMod;
+	}
+
+	public void setFechaUltMod(Date fechaUltMod) {
+		this.fechaUltMod = fechaUltMod;
+	}
+
+	public InventarioModel() {
+		// this.codInventario="";
+		// this.codJira="";
+		// this.nombreInventario="";
+		// this.subAreaFuncional="";
+		// this.descripcion="";
+		// this.observaciones="";
+		// this.version="";
+		// this.fechaAlta=new Date();
+		// this.responsableGob="";
+		// this.responsableSUMA="";
+		// this.usuarioFinal="";
+		// this.areaFuncional="";
+		// this.tecnologia="";
+		this.fechaAlta = new Date();
+	}
+
+	public InventarioModel(InventarioDTO dto){
+    	this.id=dto.getId();
+    	this.codInventario=dto.getCodInventario();
+    	this.codJira=dto.getCodJira();
+    	this.nombreInventario=dto.getNombreInventario();
+    	this.subAreaFuncional=dto.getSubAreaFuncional();
+    	this.descripcion=dto.getDescripcion();
+    	this.observaciones=dto.getObservaciones();
+    	this.version=dto.getVersion();
+    	this.fechaAlta=dto.getFechaAlta();
+    	if (dto.getResponsableGob()!=null){
+    	this.responsableGob=dto.getResponsableGob().toString();}
+    	if (dto.getResponsableSUMA()!=null){
+    	this.responsableSUMA=dto.getResponsableSUMA().toString();
+    	}
+    	if (dto.getUsuarioFinal()!=null){
+    	this.usuarioFinal=dto.getUsuarioFinal().toString();
+    	}
+    	if (dto.getAreaFuncional()!=null){
+    	this.areaFuncional=dto.getAreaFuncional().getNombre();
+    	}
+    	if (dto.getTecnologia()!=null){
+    	this.tecnologia=dto.getTecnologia().getCodTecnologia();
+    	}
+   	
+    }
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getSubAreaFuncional() {
+		return subAreaFuncional;
+	}
+
+	public Date getFechaAlta() {
+		return fechaAlta;
+	}
+
+	public void setFechaAlta(Date fechaAlta) {
+		this.fechaAlta = fechaAlta;
+	}
+
+	public void setSubAreaFuncional(String subAreaFuncional) {
+		this.subAreaFuncional = subAreaFuncional;
+	}
+
+	public String getCodInventario() {
+		return codInventario;
+	}
+
+	public void setCodInventario(String codInventario) {
+		this.codInventario = codInventario;
+	}
+
+	public String getCodJira() {
+		return codJira;
+	}
+
+	public void setCodJira(String codJira) {
+		this.codJira = codJira;
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	public String getNombreInventario() {
+		return nombreInventario;
+	}
+
+	public void setNombreInventario(String nombreInventario) {
+		this.nombreInventario = nombreInventario;
+	}
+
+	public String getObservaciones() {
+		return observaciones;
+	}
+
+	public void setObservaciones(String observaciones) {
+		this.observaciones = observaciones;
+	}
+
+	public String getVersion() {
+		return version;
+	}
+
+	public void setVersion(String version) {
+		this.version = version;
+	}
+
+	public String getResponsableSUMA() {
+		return responsableSUMA;
+	}
+
+	public void setResponsableSUMA(String responsableSUMA) {
+		this.responsableSUMA = responsableSUMA;
+	}
+
+	public String getAreaFuncional() {
+		return areaFuncional;
+	}
+
+	public void setAreaFuncional(String areaFuncional) {
+		this.areaFuncional = areaFuncional;
+	}
+
+	public String getUsuarioFinal() {
+		return usuarioFinal;
+	}
+
+	public void setUsuarioFinal(String usuarioFinal) {
+		this.usuarioFinal = usuarioFinal;
+	}
+
+	public String getResponsableGob() {
+		return responsableGob;
+	}
+
+	public void setResponsableGob(String responsableGob) {
+		this.responsableGob = responsableGob;
+	}
+
+	public String getTecnologia() {
+		return tecnologia;
+	}
+
+	public void setTecnologia(String tecnologia) {
+		this.tecnologia = tecnologia;
+	}
+
+	public InventarioDTO convert() {
+
+		InventarioDTO dto = new InventarioDTO();
+		dto.setActivo(this.getActivo());
+		dto.setId(this.getId());
+		dto.setCodInventario(this.getCodInventario());
+		dto.setCodJira(this.getCodJira());
+		dto.setNombreInventario(this.getNombreInventario());
+
+		dto.setDescripcion(this.getDescripcion());
+		dto.setObservaciones(this.getObservaciones());
+		dto.setVersion(this.getVersion());
+		
+		if(this.subAreaFuncional!=null){
+		dto.setSubAreaFuncional(this.subAreaFuncional);
+		AreaFuncionalDTO newAreafuncionalDTO= new AreaFuncionalDTO();
+		newAreafuncionalDTO.setId(Long.getLong(this.getAreaFuncional().toString()));
+		dto.setAreaFuncional(newAreafuncionalDTO);
+		}
+		
+		if(this.areaFuncional!=null){
+		dto.setSubAreaFuncional(this.areaFuncional);
+		AreaFuncionalDTO newAreafuncionalDTO= new AreaFuncionalDTO();
+		newAreafuncionalDTO.setId(Long.getLong(this.getAreaFuncional().toString()));
+		dto.setAreaFuncional(newAreafuncionalDTO);
+		}
+		
+		// dto.responsableGob=this.getResponsableGob().toString();
+		if(this.responsableGob != null){
+		dto.setResponsableGob(new PersonaDTO(Long.getLong(this.responsableGob)));
+		}
+		if(this.responsableSUMA!=null){
+		dto.setResponsableSUMA(new PersonaDTO(Long.getLong(this.responsableSUMA)));
+		}
+		if(this.usuarioFinal!=null){
+		dto.setUsuarioFinal(new PersonaDTO(Long.getLong(this.usuarioFinal)));
+		}
+		if(this.tecnologia!=null){
+		dto.setTecnologia(new TecnologiaDTO(Long.getLong(this.tecnologia)));
+		}
+
+		return dto;
+
+	}
+
+}

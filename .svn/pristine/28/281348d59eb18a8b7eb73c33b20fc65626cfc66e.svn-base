@@ -1,0 +1,44 @@
+package es.gobcantabria.aplicaciones.controlSuma.business.service;
+
+import java.util.List;
+
+import es.gobcantabria.aplicaciones.controlSuma.business.dto.RolDTO;
+import es.gobcantabria.aplicaciones.controlSuma.exception.ControlSumaException;
+
+
+
+/**
+ * @author tdevegaa
+ *
+ */
+public interface RolService {
+	
+	/**
+	 * Método que devuelve todos los roles existentes en la tabla rol
+	 * @return
+	 */
+	public List<RolDTO> findAll ();
+	
+	
+	/**
+	 * Método que devuelve el rol asociado al identificador
+	 * @return
+	 */
+	public RolDTO getById(Long id);
+	
+	/**
+	 * Método para crear un nuevo Rol
+	 * @param dto
+	 * @throws ControlSumaException
+	 */
+	public void createRol(RolDTO dto) throws ControlSumaException;
+	
+	
+	/**
+	 * Método para modificar un rol
+	 * @param dto
+	 * @throws ControlSumaException
+	 */
+	public void updateRol(RolDTO dto) throws ControlSumaException;
+
+}

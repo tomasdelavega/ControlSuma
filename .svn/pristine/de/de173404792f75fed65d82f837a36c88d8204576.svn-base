@@ -1,0 +1,13 @@
+package es.gobcantabria.aplicaciones.controlSuma.business.dao.hibernate;
+
+import java.io.Serializable;
+
+import org.springframework.stereotype.Repository;
+
+import es.gobcantabria.aplicaciones.controlSuma.business.dao.PersonaDAO;
+import es.gobcantabria.aplicaciones.controlSuma.business.domain.Persona;
+
+@Repository
+public class PersonaDAOImpl extends GenericJpaDao<Persona,Serializable> implements PersonaDAO {
+
+}

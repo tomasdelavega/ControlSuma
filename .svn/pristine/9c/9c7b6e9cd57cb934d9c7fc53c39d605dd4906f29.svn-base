@@ -1,0 +1,68 @@
+package es.gobcantabria.aplicaciones.controlSuma.business.service.impl;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import es.gobcantabria.aplicaciones.controlSuma.business.dao.PersonaDAO;
+import es.gobcantabria.aplicaciones.controlSuma.business.domain.Inventario;
+import es.gobcantabria.aplicaciones.controlSuma.business.domain.Persona;
+import es.gobcantabria.aplicaciones.controlSuma.business.dto.PersonaDTO;
+import es.gobcantabria.aplicaciones.controlSuma.business.helper.PersonaHelper;
+import es.gobcantabria.aplicaciones.controlSuma.business.service.PersonaService;
+import es.gobcantabria.aplicaciones.controlSuma.exception.ControlSumaException;
+
+
+
+
+/**
+ * @author tdevegaa
+ *Servicio que implementa las funciones o métodos para la gestión de Personas
+ */
+
+@Service
+@Transactional
+public class PersonaServiceImpl implements PersonaService{
+	
+	@Autowired
+	private MessageSource message;
+	@Autowired
+	private PersonaDAO personaDao;
+	@Autowired
+	private PersonaHelper helper;
+
+	public List<PersonaDTO> findAll() {
+		// TODO Auto-generated method stub
+		List<Persona> listaPersonas = personaDao.executeQuery("Persona.findAll");
+		return helper.convertEntityToDTO(listaPersonas);
+	}
+
+	public PersonaDTO getById(Long id) {
+		// TODO Auto-generated method stub
+		return helper.convertEntityToDTO(personaDao.find(id));
+	}
+
+	public void createPersona(PersonaDTO dto) throws ControlSumaException {
+		// TODO Auto-generated method stub
+		Persona persona=null;
+		persona = personaDao.create(helper.convertDTOToEntity(dto));
+		if (persona == null){
+			throw new ControlSumaException(message.getMessage("error.persona.form.create", null, null));
+		}
+	}
+
+	public void updatePersona(PersonaDTO dto) throws ControlSumaException {
+		// TODO Auto-generated method stub
+		Persona  persona = null;
+		persona = personaDao.update(helper.convertDTOToEntity(dto));
+		if(persona == null){
+			throw new ControlSumaException(message.getMessage("error.persona.form.update", null, null));
+		}
+		
+	}
+
+}

@@ -1,0 +1,69 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+
+<%@ taglib prefix="display" uri="http://displaytag.sf.net"%>
+<br />
+<form:form name="form" id="listDesarrolladores"
+			commandName="listDesarrolladores"
+			action="${pageContext.request.contextPath}/auth/inventario/listDesarrolladores"
+			method="post" class="form">
+    
+    
+<c:if test="${not empty listDesarrolladores}">
+	<div class="container">
+		<div class="row-fluid">
+			<div class="span2"></div>
+			<div class="span8">
+				
+				<div class="span2"></div>
+
+			</div>
+			<!-- -------------------------------------------------------------------------------------  -->
+			<!-- Fin de el Filtro                                                           -->
+			<!-- -------------------------------------------------------------------------------------  -->
+			<!-- -------------------------------------------------------------------------------------  -->
+			<!-- COMIENZO DE GRID DE DATOS                                                              -->
+			<!-- -------------------------------------------------------------------------------------  -->
+			<div class="row-fluid">
+				<div class="span12 form">
+					<a name="search"> </a>
+
+					<div class="display-table">
+						<display:table name="listDesarrolladores" requestURI="" id="inventarioPersona"
+							pagesize="10" class="table table-striped table-bordered table-hover" defaultsort="1" export="true"
+							defaultorder="descending">
+	
+							<display:setProperty name="basic.empty.showtable" value="true" />
+							<display:column property="fechaAlta" headerClass="sortable"
+								sortable="true" title="Fecha ALta" />
+							<display:column property="persona.nombre"
+								headerClass="sortable" sortable="true" title="Nombre Desarrollador" />
+						 	<display:column property="persona.primerApellido" headerClass="sortable"
+								sortable="true" title="Primear Apellido" />
+							<display:column property="persona.segundoApellido" headerClass="sortable"
+								sortable="true" title="Segundo Apellido" /> 
+							<display:column property="persona.email" headerClass="sortable"
+								sortable="true" title="email" /> 
+							<display:column property="persona.telefonoContacto" headerClass="sortable"
+								sortable="true" title="Telefono de Contacto" /> 
+
+<%-- 							<sec:authorize
+								access="hasAnyRole('ROLE_CONTROLSUMA.GESTOR','ROLE_CONTROLSUMA.ADMIN')">
+								<display:column media="html" title="Acciones">
+									<a
+										href="${pageContext.request.contextPath}/auth/inventario/edit?id=${inventario.id}"
+										class="btn btn-xs btn-info" title="Edicion"><i
+										class="icon-folder-open icon-white"></i> Editar</a>
+								</display:column>
+							</sec:authorize> --%>
+						</display:table>
+					</div>
+
+					<br />
+
+				</div>
+			</div>
+		</div>
+		</div>
+</c:if>	
+</form:form>

@@ -1,0 +1,106 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="display" uri="http://displaytag.sf.net"%>
+
+<%-- <%@ page session="true"%>
+ --%>
+
+<%-- 	<ul class="breadcrumb">
+		<li><a href="${pageContext.request.contextPath}/auth/home">Home</a></li>
+		<li class="active">Administración</li>
+	</ul> --%>
+
+<script
+	src="${pageContext.request.contextPath}/static/js/app/administracion.js"></script>
+
+<div class="container">
+	<div class="span12 form">
+		<fieldset>
+			<legend>
+				<i class="icon-file icon-white">SINCRONIZACIÓN CON JIRA</i>
+			</legend>
+			<div id="MostrarInformacion">
+				<dl class="text-overflow">
+					<dt>${ProyectosActivos}</dt>
+				</dl>
+				<dl class="text-overflow">
+					<dt>${ProyectosSincronizadosInicial}</dt>
+				</dl>
+				<dl class="text-overflow">
+					<dt>${ProyectosPendienteSincronizar}</dt>
+				</dl>
+			</div>
+		</fieldset>
+	</div>
+
+	<fieldset>
+
+		<form:form name="form" modelAttribute="form"
+			action="${pageContext.request.contextPath}/auth/administracion/jira/projects"
+			method="post" class="form">
+
+			<c:if test="${Sincronizar}">
+				<div class="row-fluid">
+					<div class="span12">
+						<div class="pull-right">
+							<input type="submit" value="Sincronizar" class="btn btn-primary" />
+						</div>
+					</div>
+				</div>
+			</c:if>
+			<br />
+			<!-- -------------------------------------------------------------------------------------  -->
+			<!-- COMIENZO DE GRID DE DATOS                                                              -->
+			<!-- -------------------------------------------------------------------------------------  -->
+			<div class="row-fluid">
+				<div class="span12 form">
+					<c:if test="${not empty listAplicaciones}">
+						<div class="display-table">
+							<display:table name="listAplicaciones" requestURI=""
+								id="aplicaciones" pagesize="10"
+								class="table table-striped table-bordered table-hover"
+								defaultsort="2" export="false" defaultorder="descending">
+								<display:caption>
+									<h2>Aplicaciones</h2>
+								</display:caption>
+		<%-- 						<display:column media="html"
+									title="<input type='checkbox' id='checkAll' />">
+									<form:checkbox path="projectSeleccionados"
+										value="${aplicaciones.codInventario}" />  
+                             </display:column>--%>
+								<display:column property="codInventario" headerClass="sortable"
+									sortable="true" title="Código" />
+								<display:column property="nombreInventario"
+									headerClass="sortable" sortable="true" title="Nombre" />
+
+								<display:column property="fechaAlta" headerClass="sortable"
+									format="{0,date,MM/dd/yyyy}" sortable="true" title="Fecha Alta" />
+								<display:column property="descripcion" headerClass="sortable"
+									sortable="true" title="Descripción" />
+								<display:column property="observaciones" headerClass="sortable"
+									sortable="true" title="Observaciones" />
+
+
+								<display:column property="sincronizado" headerClass="sortable"
+									sortable="true" title="¿Está Sincronizado?" />
+
+
+
+							</display:table>
+						</div>
+					</c:if>
+					<br />
+
+				</div>
+			</div>
+
+		</form:form>
+	</fieldset>
+	<br />
+</div>
+

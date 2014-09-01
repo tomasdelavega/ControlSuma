@@ -1,0 +1,293 @@
+package es.gobcantabria.aplicaciones.controlSuma.business.domain;
+
+import java.io.Serializable;
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+/**
+ * The persistent class for the TB_INVENTARIOS_OTRAS database table.
+ * 
+ */
+@Entity
+@Table(name = "TB_INVENTARIO_OTRAS")
+@NamedQueries({
+@NamedQuery(name = "InventariosOtras.findAll", query = "SELECT i FROM InventarioOtras i"),
+@NamedQuery(name = "InventariosOtras.findOtrasAplicacion", query = "select e from InventarioOtras e where e.inventario.id = :id"), })
+
+public class InventarioOtras implements Serializable {
+    private static final long serialVersionUID = 1L;
+
+    @Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TB_INVENTARIO_OTRAS_XINVENTARIO_GENERATOR")
+    @SequenceGenerator(name = "TB_INVENTARIO_OTRAS_XINVENTARIO_GENERATOR", sequenceName = "SEQ_INVENTARIO_OTRAS", allocationSize=1)
+    @Column(name = "X_INVENTARIO", unique = true, nullable = false, precision = 8, scale = 0)
+    private Long id;
+
+    @Column(name = "F_ALTA", columnDefinition = "Date")
+    private Date fechaAlta;
+
+    @Column(name = "F_ULT_MOD", columnDefinition = "Date")
+    private Date fechaUltMod;
+
+    @Column(name = "L_DOC_ANALISIS_FUNCIONAL", nullable = true)
+    private Boolean docAnalisisFuncional;
+
+    @Column(name = "L_DOC_DISENO_TECNICO", nullable = true)
+    private Boolean docDisenoTecnico;
+
+    @Column(name = "L_DOC_MANUAL_INSTALACION", nullable = true)
+    private Boolean docManualInstalacion;
+
+    @Column(name = "L_DOC_PLAN_PRUEBAS", nullable = true)
+    private Boolean docPlanPruebas;
+
+    @Column(name = "L_MANT_CORRECTIVO_PREVISTO", nullable = true)
+    private Boolean mantCorrectivoPrevisto;
+
+    @Column(name = "L_MANT_EVOLUTIVO_PREVISTO", nullable = true)
+    private Boolean mantEvolutivoPrevisto;
+
+    @Column(name = "L_TRABAJOS_VUELO")
+    private Boolean trabajosVuelo;
+
+    @Column(name = "T_CORRECTIVO", unique = false, nullable = true, length = 500)
+    private String correctivo;
+
+    @Column(name = "T_DOC_OTRA", unique = false, nullable = true, length = 500)
+    private String docOtra;
+
+    @Column(name = "T_EVOLUTIVO", unique = false, nullable = true, length = 500)
+    private String evolutivo;
+
+    @Column(name = "T_INVENTARIO", unique = false, nullable = true, length = 500)
+    private String inventarioObjetos;
+
+    @Column(name = "T_NIVEL_CALIDAD_CODIGO", unique = false, nullable = true, length = 100)
+    private String nivelCalidadCodigo;
+
+    @Column(name = "T_NIVEL_INCIDENCIAS", unique = false, nullable = true, length = 10)
+    private String nivelIncidencias;
+
+    @Column(name = "T_OBSERVACIONES", unique = false, nullable = true, length = 500)
+    private String observaciones;
+
+    @Column(name = "T_PERIODO_USO_APLICACION", unique = false, nullable = true, length = 100)
+    private String periodoUsoAplicacion;
+
+    @Column(name = "T_RUTA_DOC", unique = false, nullable = true, length = 255)
+    private String rutaDoc;
+
+    @Column(name = "T_TIPO_TRANSICION", unique = false, nullable = true, length = 30)
+    private String tipoTransicion;
+
+    @Column(name = "T_TRABAJOS_VUELO", unique = false, nullable = true, length = 500)
+    private String descripciontrabajosVuelo;
+
+    // bi-directional one-to-one association to Inventario
+    @OneToOne
+    @JoinColumn(name = "X_INVENTARIO")
+    private Inventario inventario;
+
+    public InventarioOtras() {
+    }
+
+    @PrePersist
+    protected void onCreate() {
+      this.fechaAlta = new Date();
+      this.fechaUltMod = new Date();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+      this.fechaUltMod = new Date();
+    }
+    public Long getId() {
+	return id;
+    }
+
+    public Date getFechaAlta() {
+	return fechaAlta;
+    }
+
+    public Date getFechaUltMod() {
+	return fechaUltMod;
+    }
+
+    public Boolean getDocAnalisisFuncional() {
+	return docAnalisisFuncional;
+    }
+
+    public Boolean getDocDisenoTecnico() {
+	return docDisenoTecnico;
+    }
+
+    public Boolean getDocManualInstalacion() {
+	return docManualInstalacion;
+    }
+
+    public Boolean getDocPlanPruebas() {
+	return docPlanPruebas;
+    }
+
+    public Boolean getMantCorrectivoPrevisto() {
+	return mantCorrectivoPrevisto;
+    }
+
+    public Boolean getMantEvolutivoPrevisto() {
+	return mantEvolutivoPrevisto;
+    }
+
+    public Boolean getTrabajosVuelo() {
+	return trabajosVuelo;
+    }
+
+    public String getCorrectivo() {
+	return correctivo;
+    }
+
+    public String getDocOtra() {
+	return docOtra;
+    }
+
+    public String getEvolutivo() {
+	return evolutivo;
+    }
+
+    public String getInventarioObjetos() {
+	return inventarioObjetos;
+    }
+
+    public String getNivelCalidadCodigo() {
+	return nivelCalidadCodigo;
+    }
+
+    public String getNivelIncidencias() {
+	return nivelIncidencias;
+    }
+
+    public String getObservaciones() {
+	return observaciones;
+    }
+
+    public String getPeriodoUsoAplicacion() {
+	return periodoUsoAplicacion;
+    }
+
+    public String getRutaDoc() {
+	return rutaDoc;
+    }
+
+    public String getTipoTransicion() {
+	return tipoTransicion;
+    }
+
+    public String getDescripciontrabajosVuelo() {
+	return descripciontrabajosVuelo;
+    }
+
+    public Inventario getInventario() {
+	return inventario;
+    }
+
+    public void setId(long id) {
+	this.id = id;
+    }
+
+    public void setFechaAlta(Date fechaAlta) {
+	this.fechaAlta = fechaAlta;
+    }
+
+    public void setFechaUltMod(Date fechaUltMod) {
+	this.fechaUltMod = fechaUltMod;
+    }
+
+    public void setDocAnalisisFuncional(Boolean docAnalisisFuncional) {
+	this.docAnalisisFuncional = docAnalisisFuncional;
+    }
+
+    public void setDocDisenoTecnico(Boolean docDisenoTecnico) {
+	this.docDisenoTecnico = docDisenoTecnico;
+    }
+
+    public void setDocManualInstalacion(Boolean docManualInstalacion) {
+	this.docManualInstalacion = docManualInstalacion;
+    }
+
+    public void setDocPlanPruebas(Boolean docPlanPruebas) {
+	this.docPlanPruebas = docPlanPruebas;
+    }
+
+    public void setMantCorrectivoPrevisto(Boolean mantCorrectivoPrevisto) {
+	this.mantCorrectivoPrevisto = mantCorrectivoPrevisto;
+    }
+
+    public void setMantEvolutivoPrevisto(Boolean mantEvolutivoPrevisto) {
+	this.mantEvolutivoPrevisto = mantEvolutivoPrevisto;
+    }
+
+    public void setTrabajosVuelo(Boolean trabajosVuelo) {
+	this.trabajosVuelo = trabajosVuelo;
+    }
+
+    public void setCorrectivo(String correctivo) {
+	this.correctivo = correctivo;
+    }
+
+    public void setDocOtra(String docOtra) {
+	this.docOtra = docOtra;
+    }
+
+    public void setEvolutivo(String evolutivo) {
+	this.evolutivo = evolutivo;
+    }
+
+    public void setInventarioObjetos(String inventarioObjetos) {
+	this.inventarioObjetos = inventarioObjetos;
+    }
+
+    public void setNivelCalidadCodigo(String nivelCalidadCodigo) {
+	this.nivelCalidadCodigo = nivelCalidadCodigo;
+    }
+
+    public void setNivelIncidencias(String nivelIncidencias) {
+	this.nivelIncidencias = nivelIncidencias;
+    }
+
+    public void setObservaciones(String observaciones) {
+	this.observaciones = observaciones;
+    }
+
+    public void setPeriodoUsoAplicacion(String periodoUsoAplicacion) {
+	this.periodoUsoAplicacion = periodoUsoAplicacion;
+    }
+
+    public void setRutaDoc(String rutaDoc) {
+	this.rutaDoc = rutaDoc;
+    }
+
+    public void setTipoTransicion(String tipoTransicion) {
+	this.tipoTransicion = tipoTransicion;
+    }
+
+    public void setDescripciontrabajosVuelo(String descripciontrabajosVuelo) {
+	this.descripciontrabajosVuelo = descripciontrabajosVuelo;
+    }
+
+    public void setInventario(Inventario inventario) {
+	this.inventario = inventario;
+    }
+
+}

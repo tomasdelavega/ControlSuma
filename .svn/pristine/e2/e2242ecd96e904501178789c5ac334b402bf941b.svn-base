@@ -1,0 +1,211 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<div class="container-fluid">
+	<div class="row-fluid">
+	<h1>Entorno de <c:out value="${entornoPRO}"/></h1>
+		<form:form name="form" id="datosEntornoPRO"
+			commandName="datosEntornoPRO"
+			action="${pageContext.request.contextPath}/auth/inventario/updateEntorno"
+			method="post" class="form">
+			<input type="hidden" value="" />
+			<form:hidden path="id" />
+			<fieldset>
+			<div class="row">
+					<div class="col-md-4">
+						<div class="form-group">
+							<label><spring:message
+									code="inventario.form.datosEntornoPRO.tEntorno" /></label>
+							<form:input path="tEntorno" id="inputTEntorno"
+								cssClass="form-control" placeholder="Obligatorio" />
+							<div class="text-danger">
+								<form:errors path="tEntorno"></form:errors>
+							</div>
+						</div>
+					</div>
+				
+				
+					<div class="col-md-4">
+						<div class="form-group">
+							<label><spring:message
+									code="inventario.form.datosEntornoPRO.fechaAlta" /></label>
+							<form:input path="fechaAlta" id="inputFechaAlta"
+								cssClass="form-control" placeholder="Obligatorio" />
+							<div class="text-danger">
+								<form:errors path="fechaAlta"></form:errors>
+							</div>
+						</div>
+					</div>
+			
+					<div class="col-md-4">
+						<div class="form-group">
+							<label><spring:message
+									code="inventario.form.datosEntornoPRO.fechaUltMod" /></label>
+							<form:input path="fechaUltMod" id="inputFechaUltMod"
+								cssClass="form-control" placeholder="Obligatorio" />
+							<div class="text-danger">
+								<form:errors path="fechaUltMod"></form:errors>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-5">
+						<div class="form-group">
+							<label><spring:message
+									code="inventario.form.datosEntornoPRO.confLdap" /></label>
+							<form:input path="confLdap" id="inputConfLdap"
+								cssClass="form-control" placeholder="Obligatorio"  min="0" max="100" />
+							<div class="text-danger">
+								<form:errors path="confLdap"></form:errors>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-7">
+						<div class="form-group">
+							<label><spring:message
+									code="inventario.form.datosEntornoPRO.datosBbdd" /></label>
+							<form:input path="datosBbdd" id="inputDatosBbdd"
+								cssClass="form-control" placeholder="Obligatorio"  min="0" max="100" />
+							<div class="text-danger">
+								<form:errors path="datosBbdd"></form:errors>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-md-5">
+						<div class="form-group">
+							<label><spring:message
+									code="inventario.form.datosEntornoPRO.frameworks" /></label>
+							<form:input path="frameworks" id="inputFrameworks"
+								cssClass="form-control" placeholder="Obligatorio" min="0" max="100" />
+							<div class="text-danger">
+								<form:errors path="frameworks"></form:errors>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-7">
+						<div class="form-group">
+							<label><spring:message
+									code="inventario.form.datosEntornoPRO.herramientaConstruccion" /></label>
+							<form:input path="herramientaConstruccion" id="inputHerramientaConstruccion"
+								cssClass="form-control" placeholder="Obligatorio"  min="0" max="100" />
+							<div class="text-danger">
+								<form:errors path="herramientaConstruccion"></form:errors>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<label><spring:message
+									code="inventario.form.datosEntornoPRO.observaciones" /></label>
+							<form:textarea path="observaciones" id="inputObservaciones"
+								cssClass="form-control" placeholder="Obligatorio"  min="0" max="500"/>
+							<div class="text-danger">
+								<form:errors path="observaciones"></form:errors>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-5">
+						<div class="form-group">
+							<label><spring:message
+									code="inventario.form.datosEntornoPRO.rutaLog" /></label>
+							<form:input path="rutaLog" id="inputRutaLog"
+								cssClass="form-control" placeholder="Obligatorio"  min="0" max="100"/>
+							<div class="text-danger">
+								<form:errors path="rutaLog"></form:errors>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-7">
+						<div class="form-group">
+							<label><spring:message
+									code="inventario.form.datosEntornoPRO.rutaSvn" /></label>
+							<form:input path="rutaSvn" id="inputRutaSvn"
+								cssClass="form-control" placeholder="Obligatorio"  min="0" max="100" />
+							<div class="text-danger">
+								<form:errors path="rutaSvn"></form:errors>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-5">
+						<div class="form-group">
+							<label><spring:message
+									code="inventario.form.datosEntornoPRO.servidorDespliegue" /></label>
+							<form:input path="servidorDespliegue" id="inputServidorDespliegue"
+								cssClass="form-control" placeholder="Obligatorio"  min="0" max="100"/>
+							<div class="text-danger">
+								<form:errors path="servidorDespliegue"></form:errors>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-7">
+						<div class="form-group">
+							<label><spring:message
+									code="inventario.form.datosEntornoPRO.url" /></label>
+							<form:input path="servidorDespliegue" id="inputUrl"
+								cssClass="form-control" placeholder="Obligatorio"  min="0" max="100"/>
+							<div class="text-danger">
+								<form:errors path="url"></form:errors>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-5">
+						<div class="form-group">
+							<label><spring:message
+									code="inventario.form.datosEntornoPRO.versionJava" /></label>
+							<form:input path="versionJava" id="inputVersionJava"
+								cssClass="form-control" placeholder="Obligatorio"  min="0" max="100" />
+							<div class="text-danger">
+								<form:errors path="versionJava"></form:errors>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-7">
+						<div class="form-group">
+							<form:input path="inventario.id" type="hidden" id="inputInventario"
+								cssClass="form-control" placeholder="Obligatorio" />
+							<div class="text-danger">
+								<form:errors path="inventario"></form:errors>
+							</div>
+						</div>
+					</div>
+				</div>
+				</fieldset>
+
+				</div>
+</div>
+		
+				<div class="row-fluid">
+					<div class="span12">
+						<div class="pull-right">
+							 <input type="submit"
+								value=<spring:message
+										code="inventario.form.datosInventario.botonSubmit" />
+								class="btn btn-primary" />
+						</div>
+					</div>
+
+				</div>
+			
+		</form:form>
+
+
+
+	</div>
+</div>

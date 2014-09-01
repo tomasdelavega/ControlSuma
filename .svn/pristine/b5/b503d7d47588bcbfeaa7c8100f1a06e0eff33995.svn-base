@@ -1,0 +1,46 @@
+package es.gobcantabria.aplicaciones.controlSuma.web.model;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.validation.constraints.NotNull;
+
+public class JiraModel {
+
+	
+	private List<String> rolesSeleccionados;
+	
+	private List<String> projectSeleccionados;
+	
+	
+	public JiraModel(){
+		this.rolesSeleccionados= new ArrayList<String>();
+		
+	}
+
+
+	public List<String> getRolesSeleccionados() {
+		return this.rolesSeleccionados;
+	}
+
+
+	public void setRolesSeleccionados(List<String> rolesSeleccionados) {
+		this.rolesSeleccionados = rolesSeleccionados;
+	}
+
+
+	public List<String> getProjectSeleccionados() {
+		return projectSeleccionados;
+	}
+
+
+	public void setProjectSeleccionados(List<String> projectSeleccionados) {
+		this.projectSeleccionados = projectSeleccionados;
+	}
+
+
+
+	
+	
+	
+}

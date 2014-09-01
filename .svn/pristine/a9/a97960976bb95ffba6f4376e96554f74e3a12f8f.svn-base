@@ -1,0 +1,22 @@
+package es.gobcantabria.aplicaciones.controlSuma.web.Enum;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public enum LogicosEnum {
+
+	SÍ, NO;
+	
+	
+	@SuppressWarnings("unused")
+	public final static List<String> getLogicos(){
+		
+		List<String> respuesta= new ArrayList<String>();
+		respuesta.add(SÍ.toString());
+		respuesta.add(NO.toString());
+		
+		return respuesta;
+		
+		
+	}
+}

@@ -1,0 +1,17 @@
+#conexion a bbdd
+#database.url = jdbc:oracle:thin:@172.30.21.38:1521:globades
+database.url=jdbc:oracle:thin:@localhost:1521:xe
+database.driver = oracle.jdbc.driver.OracleDriver
+database.username = CONTROLSUMA
+database.password = CONTROLSUMA
+database.generateDdl = true
+sistemas.app.hibernate.show_sql = true
+sistemas.app.hibernate.dialect = org.hibernate.dialect.Oracle10gDialect
+sistemas.app.hibernate.default_schema = CONTROLSUMA
+sistemas.app.hibernate.hbm2ddl.auto = validate
+sistemas.app.hibernate.connection.autocommit = true
+
+
+sistema.jira.wsdl.url=http://195.235.112.31:8080/jira/rpc/soap/jirasoapservice-v2?wsdl
+sistema.jira.username=adminjira
+sistema.jira.password=andromeda

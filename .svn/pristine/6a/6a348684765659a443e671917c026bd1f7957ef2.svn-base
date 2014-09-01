@@ -1,0 +1,47 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+
+<script src="${pageContext.request.contextPath}/static/js/app/areaFuncional.js"></script>
+
+<div class="container-fluid">
+	<div class="row-fluid">
+		<form:form name="form" id="datosAreaFuncional" commandName="datosAreaFuncional"	action="${pageContext.request.contextPath}/auth/areaFuncional/edit" method="post" class="form">
+			<input type="hidden" value=""/>
+			<form:hidden path="id"/>
+			<fieldset>
+				<legend>
+					<h4>Editar Área Funcional</h4>
+				</legend>
+				<!-- Nombre -->
+				<div class="col-md-6">
+					<div class="form-group col-md-8">
+						<label><spring:message code="areaFuncional.form.datosAreaFuncional.nombre"></spring:message></label>
+						<form:input type="text" maxlength="100" path="nombre" id="inputNombre" class="form-control" placeholder="Nombre"></form:input>
+						<div class="text-danger">
+							<form:errors path="nombre"></form:errors>
+						</div>
+					</div>
+				</div>
+				<!-- Fecha Última Modificación -->
+				<div class="col-md-6">
+					<div class="form-group col-md-8">
+						<label for="fechaUltMod"><spring:message code="areaFuncional.form.datosAreaFuncional.fechaUltMod"></spring:message></label>
+						<form:input  path="fechaUltMod" id="inputFechaUltMod" class="form-control" disabled="true"></form:input>
+						<div class="text-danger">
+							<form:errors path="fechaUltMod"></form:errors>
+						</div>
+					</div>
+				</div>
+				<!-- Menú de Botones -->	
+				<div class="row-fluid">
+					<div class="span12">
+						<div class="pull-right">
+							<input id="btnResetFormEdit" type="button" value="<spring:message code="areaFuncional.form.datosAreaFuncional.botonLimpiar" />" class="btn btn-primary" />
+							<input type="submit" type="button" value="<spring:message code="areaFuncional.form.datosAreaFuncional.botonSubmit" />" class="btn btn-primary" />
+						</div>
+					</div>
+				</div>
+			</fieldset>
+		</form:form>
+	</div>
+</div>

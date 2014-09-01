@@ -1,0 +1,47 @@
+package es.gobcantabria.aplicaciones.controlSuma.business.helper;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.stereotype.Component;
+
+import es.gobcantabria.aplicaciones.controlSuma.business.domain.Rol;
+import es.gobcantabria.aplicaciones.controlSuma.business.dto.RolDTO;
+
+@Component
+public class RolHelper extends GenericHelper{
+
+	
+	public RolDTO convertEntityToDTO(Rol entity) {
+		RolDTO dto= new RolDTO();
+		
+		dto.setId(entity.getId());
+		dto.setFechaAlta(entity.getFechaAlta());
+		dto.setFechaUltMod(entity.getFechaUltMod());
+		dto.setNombre(entity.getNombre());
+		dto.setDescripcion(entity.getDescripcion());
+		dto.setCodJira(entity.getCodJira());
+				
+		return dto;
+		
+	}
+	
+	
+	public Rol convertDTOToEntity (RolDTO dto){
+		Rol rol = new Rol();
+		rol.setId(dto.getId());
+		rol.setNombre(dto.getNombre());
+		rol.setDescripcion(dto.getDescripcion());
+		rol.setCodJira(dto.getCodJira());
+		return rol;
+	}
+	
+	public List<RolDTO> convertEntityToDTO(List<Rol> entities){
+		List<RolDTO> listaRolDto = new ArrayList<RolDTO>();
+		for(Rol entity: entities){
+			listaRolDto.add(this.convertEntityToDTO(entity));
+		}
+		return listaRolDto;
+		
+	}
+}
