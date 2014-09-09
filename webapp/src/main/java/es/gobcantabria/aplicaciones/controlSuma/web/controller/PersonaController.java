@@ -224,12 +224,14 @@ public class PersonaController {
 			personaService.deletePersona(idPersona);
 			List<PersonaDTO> listaPersonas = new ArrayList<PersonaDTO>();
 			listaPersonas = (List<PersonaDTO>) sesion.getAttribute("listPersonas");
-			for(PersonaDTO persona : listaPersonas){
-				if(persona.getId() == idPersona){
-					listaPersonas.remove(persona);
+			boolean match = false;
+			for(int i=0;match==false;i++){
+				if(listaPersonas.get(i).getId() == idPersona){
+					listaPersonas.remove(i);
+					match = true;
 				}
 			}
-			sesion.setAttribute("listPersonas", listaPersonas);
+			request.getSession().setAttribute("listPersonas", listaPersonas);
 			attributes.addAttribute("mensajeInfo","Elemento borrado satisfactoriamente.");
 		} catch (Exception e) {
 			attributes.addAttribute("mensajeError", "No se puede borrar el elemento.");
